@@ -5,8 +5,7 @@
     <title>Register</title>
 </head>
 <body>
-<a href="register.html">Register</a> | <a href="login.html">Login</a> | <a href="/logout">Logout</a> | <a href="profile.jsp">Profile</a>
-<hr>
+<jsp:include page="menu.html"/>
 <form action="/register" method="post">
     Username: <input type="text" name="username"><br>
     Password: <input type="password" name="password"><br>

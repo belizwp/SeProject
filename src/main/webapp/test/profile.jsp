@@ -7,9 +7,35 @@
     <title>Profile</title>
 </head>
 <body>
-<a href="register.html">Register</a> | <a href="login.html">Login</a> | <a href="/logout">Logout</a> | <a href="profile.jsp">Profile</a>
-<hr>
-${sessionScope.user.username}<br>
-${sessionScope.user.createTime}<br>
+<jsp:include page="menu.html"/>
+<c:set var="user" value="${sessionScope.user}"/>
+<table border="1">
+    <tbody>
+        <tr>
+            <td>Username</td>
+            <td>${user.username}</td>
+        </tr>
+        <tr>
+            <td>Fname</td>
+            <td>${user.fname}</td>
+        </tr>
+        <tr>
+            <td>Lname</td>
+            <td>${user.lname}</td>
+        </tr>
+        <tr>
+            <td>Email</td>
+            <td>${user.email}</td>
+        </tr>
+        <tr>
+            <td>create_time</td>
+            <td>${user.createTime}</td>
+        </tr>
+        <tr>
+            <td>update_time</td>
+            <td>${user.updateTime}</td>
+        </tr>
+    </tbody>
+</table>
 </body>
 </html>
