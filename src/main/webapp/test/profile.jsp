@@ -9,33 +9,40 @@
 <body>
 <jsp:include page="menu.html"/>
 <c:set var="user" value="${sessionScope.user}"/>
-<table border="1">
-    <tbody>
-        <tr>
-            <td>Username</td>
-            <td>${user.username}</td>
-        </tr>
-        <tr>
-            <td>Fname</td>
-            <td>${user.fname}</td>
-        </tr>
-        <tr>
-            <td>Lname</td>
-            <td>${user.lname}</td>
-        </tr>
-        <tr>
-            <td>Email</td>
-            <td>${user.email}</td>
-        </tr>
-        <tr>
-            <td>create_time</td>
-            <td>${user.createTime}</td>
-        </tr>
-        <tr>
-            <td>update_time</td>
-            <td>${user.updateTime}</td>
-        </tr>
-    </tbody>
-</table>
+<c:choose>
+    <c:when test="${user != null}">
+        <table border="1">
+            <tbody>
+            <tr>
+                <td>Username</td>
+                <td>${user.username}</td>
+            </tr>
+            <tr>
+                <td>Fname</td>
+                <td>${user.fname}</td>
+            </tr>
+            <tr>
+                <td>Lname</td>
+                <td>${user.lname}</td>
+            </tr>
+            <tr>
+                <td>Email</td>
+                <td>${user.email}</td>
+            </tr>
+            <tr>
+                <td>create_time</td>
+                <td>${user.createTime}</td>
+            </tr>
+            <tr>
+                <td>update_time</td>
+                <td>${user.updateTime}</td>
+            </tr>
+            </tbody>
+        </table>
+    </c:when>
+    <c:otherwise>
+        <jsp:include page="login_required.html"/>
+    </c:otherwise>
+</c:choose>
 </body>
 </html>
