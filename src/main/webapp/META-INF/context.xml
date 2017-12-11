@@ -3,7 +3,7 @@
     <Resource
             name="sedb" type="javax.sql.DataSource"
             maxActive="20" maxIdle="10" maxWait="-1"
-            url="jdbc:mysql://sedbinstance.cprxongiqwog.ap-southeast-1.rds.amazonaws.com:3306/sedb?autoReconnect=true"
+            url="jdbc:mysql://sedbinstance.czksgij6teo9.ap-southeast-1.rds.amazonaws.com:3306/sedb?autoReconnect=true"
             driverClassName="com.mysql.cj.jdbc.Driver"
             username="adminseproject" password="sefinal2017"/>
 </Context>
