@@ -28,7 +28,7 @@ public class RegisterServlet extends HttpServlet {
         lname = request.getParameter("lname");
         email = request.getParameter("email");
 
-        Authenticator authenticator = new Authenticator(connection);
+        Authenticator authenticator = new Authenticator();
 
         User user = new User();
         user.setUsername(username);
@@ -40,7 +40,7 @@ public class RegisterServlet extends HttpServlet {
         PrintWriter out = response.getWriter();
 
         try {
-            if (authenticator.register(user)) {
+            if (authenticator.register(user, connection)) {
                 out.println("Register success!");
             } else {
                 out.println("Register failed!");

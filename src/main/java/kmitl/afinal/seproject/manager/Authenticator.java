@@ -9,13 +9,7 @@ import java.sql.SQLException;
 
 public class Authenticator {
 
-    private Connection connection;
-
-    public Authenticator(Connection connection) {
-        this.connection = connection;
-    }
-
-    public User validate(String username, String password) throws SQLException {
+    public User validate(String username, String password, Connection connection) throws SQLException {
         String sql = "SELECT fname, lname, email, create_time, update_time FROM `user` WHERE username = ? AND password = ?";
 
         PreparedStatement stm = connection.prepareStatement(sql);
@@ -40,7 +34,7 @@ public class Authenticator {
         return user;
     }
 
-    public boolean register(User user) throws SQLException {
+    public boolean register(User user, Connection connection) throws SQLException {
         String sql = "INSERT INTO user(username, password, fname, lname, email) VALUES (?, ?, ?, ?, ?);";
 
         PreparedStatement stm = connection.prepareStatement(sql);
@@ -55,7 +49,7 @@ public class Authenticator {
         return row > 0;
     }
 
-    public boolean update(User user) throws SQLException {
+    public boolean update(User user, Connection connection) throws SQLException {
         String sql = "UPDATE user SET password=?, fname=?, lname=?, email=? WHERE username = ?";
 
         PreparedStatement stm = connection.prepareStatement(sql);

@@ -26,12 +26,12 @@ public class LoginServlet extends HttpServlet {
         username = request.getParameter("username");
         password = request.getParameter("password");
 
-        Authenticator authenticator = new Authenticator(connection);
+        Authenticator authenticator = new Authenticator();
 
         PrintWriter out = response.getWriter();
 
         try {
-            User user = authenticator.validate(username, password);
+            User user = authenticator.validate(username, password, connection);
             if (user != null) {
                 HttpSession session = request.getSession(true);
                 session.setAttribute("user", user);
