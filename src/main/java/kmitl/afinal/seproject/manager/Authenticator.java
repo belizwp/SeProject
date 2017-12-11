@@ -11,8 +11,8 @@ public class Authenticator {
 
     private Connection connection;
 
-    public Authenticator() {
-        connection = DatabaseManager.getInstance().getConnection();
+    public Authenticator(Connection connection) {
+        this.connection = connection;
     }
 
     public User validate(String username, String password) throws SQLException {

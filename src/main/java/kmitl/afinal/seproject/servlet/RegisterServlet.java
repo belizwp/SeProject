@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.sql.Connection;
 import java.sql.SQLException;
 
 @WebServlet(name = "RegisterServlet", urlPatterns = "/register")
@@ -18,6 +19,8 @@ public class RegisterServlet extends HttpServlet {
     public void processRequest(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         response.setContentType("text/html");
 
+        Connection connection = (Connection) getServletContext().getAttribute("connection");
+
         String username, password, fname, lname, email;
         username = request.getParameter("username");
         password = request.getParameter("password");
@@ -25,7 +28,7 @@ public class RegisterServlet extends HttpServlet {
         lname = request.getParameter("lname");
         email = request.getParameter("email");
 
-        Authenticator authenticator = new Authenticator();
+        Authenticator authenticator = new Authenticator(connection);
 
         User user = new User();
         user.setUsername(username);

@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.sql.Connection;
 import java.sql.SQLException;
 
 @WebServlet(name = "LoginServlet", urlPatterns = "/login")
@@ -19,11 +20,13 @@ public class LoginServlet extends HttpServlet {
     public void processRequest(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         response.setContentType("text/html");
 
+        Connection connection = (Connection) getServletContext().getAttribute("connection");
+
         String username, password;
         username = request.getParameter("username");
         password = request.getParameter("password");
 
-        Authenticator authenticator = new Authenticator();
+        Authenticator authenticator = new Authenticator(connection);
 
         PrintWriter out = response.getWriter();
 
