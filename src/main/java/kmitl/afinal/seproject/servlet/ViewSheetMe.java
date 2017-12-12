@@ -28,9 +28,7 @@ public class ViewSheetMe extends HttpServlet {
         Connection connection = (Connection) getServletContext().getAttribute("connection");
 
         String user = (String) request.getSession().getAttribute("user");
-        SheetDao sheet = new SheetDao();
-
-        List<Sheet> sheet1 = sheet.getSheet(user);
+        List<Sheet> sheet1 = SheetDao.instance.getSheet(user);
 
         //request.setAttribute("sheet", sheet1);
         //request.getRequestDispatcher("/test/index.jsp").forward(request, response);
