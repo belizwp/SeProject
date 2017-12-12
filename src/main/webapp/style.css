@@ -113,6 +113,7 @@ p{
   height: 40px;
   border-bottom: 0.5px solid #a9a9a9;
   font-size: 17px;
+  text-align: center;
 }
 
 button{
@@ -163,4 +164,39 @@ tr:nth-child(even) {
   width: 50px;
   height: 50px;
   background-image: url(picture/icon_search.svg);
+}
+.text_input{
+    border: 1px solid grey;
+    border-radius: 18px;
+    text-align: center;
+    background-color: white;
+    width: 250px;
+    height: 40px;
+    font-family: 'Kanit', sans-serif;
+}
+.login{
+  border: 1px solid #444343;
+    border-radius: 18px;
+    text-align: center;
+    background-color: #444343;
+    color: #E7E5E5;
+    width: 250px;
+    height: 40px;
+    font-family: 'Kanit', sans-serif;
+    cursor: pointer;
+}
+.btn{
+    border: 1px solid #444343;
+    border-radius: 18px;
+    text-align: center;
+    background-color: #444343;
+    color: grey;
+    width: 100px;
+    height: 40px;
+    font-family: 'Kanit', sans-serif;
+    cursor: pointer;
+}
+#iconfacebook{
+    font-size: 1.3em;
+
 }
