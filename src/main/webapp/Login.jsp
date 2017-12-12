@@ -3,7 +3,7 @@
 
 <jsp:include page="templates/header.jsp"/>
 
-<div id="nav-bar">
+
     <c:set var="user" value="${sessionScope.user}"/>
     <c:choose>
         <c:when test="${user != null}">
@@ -29,4 +29,5 @@
         </c:otherwise>
     </c:choose>
 </div>
-
+</body>
+</html>

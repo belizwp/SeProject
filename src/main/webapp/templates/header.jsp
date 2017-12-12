@@ -28,8 +28,5 @@
             <li><a href="/search.html">เอกสารที่ถูกใจ</a></li>
             <li id="logo"><a href="/search.html">Sheet&Share </a></li>
             <li><a href="/search.html">เอกสารที่แบ่งปัน</a></li>
-            <li><a href="/login.html">โปรไฟล์</a></li>
+            <li><a href="/Login.jsp">โปรไฟล์</a></li>
         </ul>
-    </div>
-</body>
-</html>
