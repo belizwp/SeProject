@@ -12,7 +12,7 @@ import java.util.List;
 
 public class BranchDao {
 
-    public static BranchDao instance;
+    private static BranchDao instance;
 
     public static BranchDao with(Connection connection) {
         if (instance == null) {

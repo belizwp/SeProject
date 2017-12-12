@@ -12,7 +12,7 @@ import java.util.List;
 
 public class SubjectDao {
 
-    public static SubjectDao instance;
+    private static SubjectDao instance;
 
     public static SubjectDao with(Connection connection) {
         if (instance == null) {

@@ -12,7 +12,7 @@ import java.util.List;
 
 public class DepartmentDao {
 
-    public static DepartmentDao instance;
+    private static DepartmentDao instance;
 
     public static DepartmentDao with(Connection connection) {
         if (instance == null) {
