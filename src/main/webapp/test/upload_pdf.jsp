@@ -5,6 +5,7 @@
 <html>
 <head>
     <title>Title</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 </head>
 <body>
 <jsp:include page="menu.html"/>
@@ -20,9 +21,20 @@
                     <td><input type="text" name="title" placeholder="Title"/><br></td>
                 </tr>
                 <tr>
+                    <td>ภาคการศึกษา</td>
+                    <td>
+                        <select name="semester" id="semester-list" onchange="getSubjectWithSemester(this.value)">
+                            <option value=0>--ไม่ระบุ--</option>
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                        </select>
+                    </td>
+                </tr>
+                <tr>
                     <td>คณะ</td>
                     <td>
-                        <select>
+                        <select name="faculty" id="faculty-list" onchange="getDepartment(this.value)">
+                            <option value=0>--ไม่ระบุ--</option>
                             <sql:query dataSource="${dataSource}" var="faculty_rows">
                                 SELECT * from `faculty`;
                             </sql:query>
@@ -34,27 +46,35 @@
                 </tr>
                 <tr>
                     <td>ภาควิชา</td>
-                    <td></td>
+                    <td>
+                        <select name="department" id="department-list" onchange="getBranch(this.value)">
+                            <option value=0>--ไม่ระบุ--</option>
+                        </select>
+                    </td>
                 </tr>
                 <tr>
                     <td>สาขาวิชา</td>
-                    <td></td>
+                    <td>
+                        <select name="branch" id="branch-list" onchange="getSubject(this.value)">
+                            <option value=0>--ไม่ระบุ--</option>
+                        </select>
+                    </td>
                 </tr>
                 <tr>
                     <td>ชั้นปี</td>
                     <td>
-                        <select>
-                            <option value="0">--ทุกชั้นปี--</option>
-                            <option value="1">1</option>
-                            <option value="2">2</option>
-                            <option value="3">3</option>
-                            <option value="4">4</option>
+                        <select name="year" id="year-list" onchange="getSubjectWithYear(this.value)">
+                            <option value=0>--ไม่ระบุ--</option>
                         </select>
                     </td>
                 </tr>
                 <tr>
                     <td>วิชา</td>
-                    <td></td>
+                    <td>
+                        <select name="subject" id="subject-list">
+                            <option value=0>--ไม่ระบุ--</option>
+                        </select>
+                    </td>
                 </tr>
                 <tr>
                     <td>upload file</td>
@@ -72,4 +92,112 @@
     </c:otherwise>
 </c:choose>
 </body>
+<script>
+    function clearOption(id) {
+        $(id)
+            .find('option')
+            .remove()
+            .end()
+            .append("<option value=0>--ไม่ระบุ--</option>")
+        ;
+    }
+
+    function getDepartment(val) {
+        if (val == 0) {
+            clearOption('#department-list')
+            clearOption('#branch-list');
+            clearOption('#year-list');
+            clearOption('#subject-list');
+        } else {
+            $.ajax({
+                type: "POST",
+                url: "/getChoice",
+                data: {id: val, type: "department"},
+                success: function (data) {
+                    $("#department-list").html(data);
+                    clearOption('#branch-list');
+                    clearOption('#year-list');
+                    clearOption('#subject-list');
+                }
+            });
+        }
+    }
+
+    function getBranch(val) {
+        if (val == 0) {
+            clearOption('#branch-list');
+            clearOption('#year-list');
+            clearOption('#subject-list');
+        } else {
+            $.ajax({
+                type: "POST",
+                url: "/getChoice",
+                data: {id: val, type: "branch"},
+                success: function (data) {
+                    $("#branch-list").html(data);
+                    clearOption('#year-list');
+                    clearOption('#subject-list');
+                }
+            });
+        }
+    }
+
+    function getYearByBranchId(val) {
+        if (val == 0) {
+            clearOption('#year-list');
+            clearOption('#subject-list');
+        } else {
+            $.ajax({
+                type: "POST",
+                url: "/getChoice",
+                data: {id: val, type: "year"},
+                success: function (data) {
+                    $("#year-list").html(data);
+                    clearOption('#subject-list');
+                }
+            });
+        }
+    }
+
+    function getSubject(val) {
+        getYearByBranchId(val);
+
+        if (val == 0) {
+            clearOption('#subject-list');
+        } else {
+            $.ajax({
+                type: "POST",
+                url: "/getChoice",
+                data: {id: val, type: "subject", semester: $("#semester-list").val()},
+                success: function (data) {
+                    $("#subject-list").html(data);
+                }
+            });
+        }
+    }
+
+    function getSubjectWithYear(year) {
+        $.ajax({
+            type: "POST",
+            url: "/getChoice",
+            data: {id: $("#branch-list").val(), year: year, type: "sub-year", semester: $("#semester-list").val()},
+            success: function (data) {
+                clearOption('#subject-list');
+                $("#subject-list").html(data);
+            }
+        });
+    }
+
+    function getSubjectWithSemester(val) {
+        $.ajax({
+            type: "POST",
+            url: "/getChoice",
+            data: {id: $("#branch-list").val(), year: $("#year-list").val(), type: "sub-semester", semester: val},
+            success: function (data) {
+                clearOption('#sub-semester');
+                $("#subject-list").html(data);
+            }
+        });
+    }
+</script>
 </html>
