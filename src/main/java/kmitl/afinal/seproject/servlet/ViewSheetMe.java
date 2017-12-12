@@ -19,22 +19,23 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-@WebServlet(name = "Template", urlPatterns = "/viewsheetme")
+@WebServlet(name = "ViewSheetMeServlet", urlPatterns = "/viewSheetMe")
 public class ViewSheetMe extends HttpServlet {
 
     public void processRequest(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException, SQLException {
         response.setContentType("text/html");
 
-        Connection connection = (Connection) getServletContext().getAttribute("connection");
+        User user = (User) request.getSession().getAttribute("user");
 
-        String user = (String) request.getSession().getAttribute("user");
-        List<Sheet> sheet1 = SheetDao.instance.getSheet(user);
+        if (user != null) {
+            Connection connection = (Connection) getServletContext().getAttribute("connection");
+            List<Sheet> sheetList = SheetDao.with(connection).getSheet(user.getUsername());
 
-        //request.setAttribute("sheet", sheet1);
-        //request.getRequestDispatcher("/test/index.jsp").forward(request, response);
-
-        PrintWriter out = response.getWriter();
-        out.println(sheet1);
+            PrintWriter out = response.getWriter();
+            for (Sheet sheet : sheetList) {
+                out.println(sheet);
+            }
+        }
     }
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

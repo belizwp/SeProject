@@ -14,22 +14,19 @@ import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.List;
 
-@WebServlet(name = "Template", urlPatterns = "/viewsheetme")
+@WebServlet(name = "viewSheetAllServlet", urlPatterns = "/viewSheetAll")
 public class ViewSheetAll extends HttpServlet {
 
     public void processRequest(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException, SQLException {
         response.setContentType("text/html");
 
         Connection connection = (Connection) getServletContext().getAttribute("connection");
-        SheetDao sheet = new SheetDao();
-
-        List<Sheet> sheet1 = sheet.getAll();
-
-        //request.setAttribute("sheet", sheet1);
-        //request.getRequestDispatcher("/test/index.jsp").forward(request, response);
+        List<Sheet> sheetList = SheetDao.with(connection).getAll();
 
         PrintWriter out = response.getWriter();
-        out.println(sheet1);
+        for (Sheet sheet : sheetList) {
+            out.println(sheet);
+        }
     }
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

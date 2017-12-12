@@ -1,6 +1,7 @@
 package kmitl.afinal.seproject.model;
 
 public class Sheet extends BaseModel {
+
     private int id;
     private String type;
     private String title;
@@ -32,8 +33,9 @@ public class Sheet extends BaseModel {
         return title;
     }
 
-    public void setTitle(String title) { this.title = title; }
-
+    public void setTitle(String title) {
+        this.title = title;
+    }
 
     public String getSubject_id() {
         return subject_id;
@@ -89,5 +91,21 @@ public class Sheet extends BaseModel {
 
     public void setUpdateTime(String updateTime) {
         this.updateTime = updateTime;
+    }
+
+    @Override
+    public String toString() {
+        return "Sheet{" +
+                "id=" + id +
+                ", type='" + type + '\'' +
+                ", title='" + title + '\'' +
+                ", subject_id='" + subject_id + '\'' +
+                ", branch_id=" + branch_id +
+                ", department_id=" + department_id +
+                ", faculty_id=" + faculty_id +
+                ", create_by='" + create_by + '\'' +
+                ", createTime='" + createTime + '\'' +
+                ", updateTime='" + updateTime + '\'' +
+                '}';
     }
 }
