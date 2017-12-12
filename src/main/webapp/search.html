@@ -30,83 +30,44 @@
 
     <section> 
     <div id="select-group" align="center">
-      <button onclick="year2()" class="dropbtn">ปีการศึกษา<img src="picture/play-button.svg" class="dropdown" align="right"></button>
-        <div id="myDropdown_year2" class="dropdown-content">
-            <a href="#home">2560</a>
-            <a href="#about">2559</a>
-            <a href="#contact">2558</a>
-        </div>
-      <button onclick="semester()" class="dropbtn">ภาคเรียน<img src="picture/play-button.svg" class="dropdown" align="right"></button>
-        <div id="myDropdown_semester" class="dropdown-content">
-            <a href="#home">1</a>
-            <a href="#about">2</a>
-        </div>		
-      <button onclick="faculty()" class="dropbtn">เลือกคณะ<img src="picture/play-button.svg" class="dropdown" align="right"></button>
-        <div id="myDropdown_faculty" class="dropdown-content">
-            <a href="#home">คณะเทคโนโลยีสารสนเทศ</a>
-            <a href="#about">คณะวิศวกรรมศาสตร์</a>
-            <a href="#contact">คณะวิทยาศาสตร์</a>
-            <a href="#contact">คณะอุตสาหกรรมการผลิต</a>
-        </div>
-      <button onclick="department()" class="dropbtn">เลือกภาควิชา<img src="picture/play-button.svg" class="dropdown" align="right"></button>
-        <div id="myDropdown_department" class="dropdown-content">
-            <a href="#home">Home2</a>
-            <a href="#about">About2</a>
-            <a href="#contact">Contact2</a>
-        </div>
-      <button onclick="branch()" class="dropbtn">เลือกสาขาวิชา<img src="picture/play-button.svg" class="dropdown" align="right"></button>
-        <div id="myDropdown_branch" class="dropdown-content">
-            <a href="#home">Home3</a>
-            <a href="#about">About3</a>
-            <a href="#contact">Contact3</a>
-        </div>
-      <button onclick="year()" class="dropbtn">เลือกชั้นปี<img src="picture/play-button.svg" class="dropdown" align="right"></button>
-        <div id="myDropdown_year" class="dropdown-content">
-            <a href="#home">Home4</a>
-            <a href="#about">About4</a>
-            <a href="#contact">Contact4</a>
-        </div>	
+      <select>
+          <option selected="" disabled="">ปีการศึกษา</option>
+          <option value="saab">Saab</option>
+          <option value="opel">Opel</option>
+          <option value="audi">Audi</option>
+      </select>
+      <select>
+          <option selected="" disabled="">ภาคเรียน</option>
+          <option value="saab">Saab</option>
+          <option value="opel">Opel</option>
+          <option value="audi">Audi</option>
+      </select>
+      <select>
+          <option selected="" disabled="">เลือกคณะ</option>
+          <option value="saab">Saab</option>
+          <option value="opel">Opel</option>
+          <option value="audi">Audi</option>
+      </select>
+      <select>
+          <option selected="" disabled="">เลือกภาควิชา</option>
+          <option value="saab">Saab</option>
+          <option value="opel">Opel</option>
+          <option value="audi">Audi</option>
+      </select>
+      <select>
+          <option selected="" disabled="">เลือกสาขาวิชา</option>
+          <option value="saab">Saab</option>
+          <option value="opel">Opel</option>
+          <option value="audi">Audi</option>
+      </select>
+      <select>
+          <option selected="" disabled="">เลือกชั้นปี</option>
+          <option value="saab">Saab</option>
+          <option value="opel">Opel</option>
+          <option value="audi">Audi</option>
+      </select>
+
       <a href="subject.html"><img src="picture/icon_search.svg" id="icon-search" onclick=""></a>
-    </div>
-    </section>
-
-    <script>
-      /* When the user clicks on the button, 
-      toggle between hiding and showing the dropdown content */
-      function year2() {
-          document.getElementById("myDropdown_year2").classList.toggle("show");
-      }
-      function semester() {
-          document.getElementById("myDropdown_semester").classList.toggle("show");
-      }
-      function faculty() {
-          document.getElementById("myDropdown_faculty").classList.toggle("show");
-      }
-      function department() {
-          document.getElementById("myDropdown_department").classList.toggle("show");
-      }
-      function branch() {
-          document.getElementById("myDropdown_branch").classList.toggle("show");
-      }
-      function year() {
-          document.getElementById("myDropdown_year").classList.toggle("show");
-      }
-      // Close the dropdown if the user clicks outside of it
-      window.onclick = function(event) {
-        if (!event.target.matches('.dropbtn')) {
-
-          var dropdowns = document.getElementsByClassName("dropdown-content");
-          var i;
-          for (i = 0; i < dropdowns.length; i++) {
-            var openDropdown = dropdowns[i];
-            if (openDropdown.classList.contains('show')) {
-              openDropdown.classList.remove('show');
-            }
-          }
-        }
-      }
-      </script>
       
-
   </body>
 </html>
