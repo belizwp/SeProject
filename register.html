@@ -1,0 +1,56 @@
+<html>
+  <head>
+    <title>Sheet and Share</title>
+    
+    <link rel="stylesheet" href="foundation.css">
+    <link rel="stylesheet" href="style.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style type="text/css">
+      body{
+        display: flex;
+        width: 100%;
+        height: 100%;
+        background:url('picture/login.jpg') 100% no-repeat;
+        background-size: cover;
+        background-position: center top;
+      }
+     .button{
+    border: 1px solid grey;
+    border-radius: 18px;
+    text-align: center;	
+    background-color: white;
+    width: 250px;
+    height: 40px;
+    font-family: 'Kanit', sans-serif;
+    </style>
+  </head>
+  <body>
+    <div id="nav-bar">
+      <ul class="menu medium-expanded nav">
+      <li id="logo"><a href="search.html">Register</a></li>
+    </ul>
+    <form action="/action_page.php">
+  		<center>First name:
+  		<input type="text" class="button" name="firstname">
+  		Last name:<input type="text" class="button" name="lastname">
+  		Username:<input type="text" class="button" name="username">
+  		Password:<input type="text" class="button" name="password">
+  		E-mail:<input type="text" class="button" name="email">
+  		คณะ:<input type="text" class="button" name="faculty">
+  		สาขา:<input type="text" class="button" name="major">
+  		ชั้นปี:
+  		<select name="" class="button">
+  		<option value="1">1</option>
+    			<option value="2">2</option>
+   				<option value="3">3</option>
+    			<option value="4">4</option>
+    	</select>
+  		<input type="submit" value="Sign up"></center>
+
+	</form>
+
+    </div>
+
+  </body>
+</html>
