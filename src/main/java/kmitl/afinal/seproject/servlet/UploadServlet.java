@@ -1,5 +1,10 @@
 package kmitl.afinal.seproject.servlet;
 
+import kmitl.afinal.seproject.dao.SheetDao;
+import kmitl.afinal.seproject.dao.SheetPdfDao;
+import kmitl.afinal.seproject.model.Sheet;
+import kmitl.afinal.seproject.model.SheetPdf;
+import kmitl.afinal.seproject.model.User;
 import org.apache.commons.fileupload.FileItem;
 import org.apache.commons.fileupload.disk.DiskFileItemFactory;
 import org.apache.commons.fileupload.servlet.ServletFileUpload;
@@ -13,6 +18,8 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.File;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.sql.Connection;
+import java.sql.SQLException;
 import java.util.Iterator;
 import java.util.List;
 
@@ -22,8 +29,8 @@ public class UploadServlet extends HttpServlet {
 
     private boolean isMultipart;
     private String filePath;
-    private int maxFileSize = 50 * 1024;
-    private int maxMemSize = 4 * 1024;
+    private long maxFileSize = 500000 * 1024; // 50 Mb.
+    private int maxMemSize = 4 * 1024; // 4 kb.
     private File file;
 
     public void init() {
@@ -65,10 +72,7 @@ public class UploadServlet extends HttpServlet {
 
         try {
             // Parse the request to get file items.
-            List fileItems = upload.parseRequest(request);
-
-            // Process the uploaded file items
-            Iterator i = fileItems.iterator();
+            List<FileItem> fileItems = upload.parseRequest(request);
 
             out.println("<html>");
             out.println("<head>");
@@ -76,30 +80,78 @@ public class UploadServlet extends HttpServlet {
             out.println("</head>");
             out.println("<body>");
 
-            while (i.hasNext()) {
-                FileItem fi = (FileItem) i.next();
-                if (!fi.isFormField()) {
-                    // Get the uploaded file parameters
-                    String fieldName = fi.getFieldName();
-                    String fileName = fi.getName();
-                    String contentType = fi.getContentType();
-                    boolean isInMemory = fi.isInMemory();
-                    long sizeInBytes = fi.getSize();
+            Sheet sheet = uploadSheetInfo(fileItems, request);
 
-                    // Write the file
-                    if (fileName.lastIndexOf("\\") >= 0) {
-                        file = new File(filePath + fileName.substring(fileName.lastIndexOf("\\")));
-                    } else {
-                        file = new File(filePath + fileName.substring(fileName.lastIndexOf("\\") + 1));
-                    }
-                    fi.write(file);
-                    out.println("Uploaded Filename: " + fileName + " at " + filePath + "<br>");
-                }
+            if (sheet.getType().equals("pdf")) {
+                uploadPdfFile(fileItems, sheet, out);
+            } else {
+                out.println("no supported file type.");
             }
+
             out.println("</body>");
             out.println("</html>");
         } catch (Exception ex) {
-            System.out.println(ex);
+            ex.printStackTrace();
+        }
+    }
+
+    private Sheet uploadSheetInfo(List<FileItem> fileItems, HttpServletRequest request) throws SQLException {
+        Sheet sheet = new Sheet();
+
+        for (FileItem item : fileItems) {
+            if (item.isFormField()) {
+
+                String fieldName = item.getFieldName();
+                String fieldValue = item.getString();
+
+                if ("type".equals(fieldName)) {
+                    sheet.setType(fieldValue);
+                } else if ("title".equals(fieldName)) {
+                    sheet.setTitle(fieldValue);
+                } else if ("faculty".equals(fieldName)) {
+                    sheet.setFaculty_id(fieldValue.equals("0") ? null : Integer.parseInt(fieldValue));
+                } else if ("department".equals(fieldName)) {
+                    sheet.setDepartment_id(fieldValue.equals("0") ? null : Integer.parseInt(fieldValue));
+                } else if ("branch".equals(fieldName)) {
+                    sheet.setBranch_id(fieldValue.equals("0") ? null : Integer.parseInt(fieldValue));
+                } else if ("subject".equals(fieldName)) {
+                    sheet.setSubject_id(fieldValue.equals("0") ? null : fieldValue);
+                }
+            }
+        }
+
+        User user = (User) request.getSession().getAttribute("user");
+        sheet.setCreate_by(user.getUsername());
+
+        Connection connection = (Connection) getServletContext().getAttribute("connection");
+        int id = SheetDao.with(connection).insert(sheet);
+        sheet.setId(id);
+
+        return sheet;
+    }
+
+    private void uploadPdfFile(List<FileItem> fileItems, Sheet sheet, PrintWriter out) throws Exception {
+        File dir = new File(filePath + "sheet" + File.separator + "pdf" + File.separator);
+        String fileName = sheet.getId() + ".pdf";
+
+        for (FileItem item : fileItems) {
+            if (!item.isFormField()) {
+                if (!dir.exists()) {
+                    dir.mkdirs();
+                }
+                file = new File(dir + File.separator + fileName);
+                item.write(file);
+
+                Connection connection = (Connection) getServletContext().getAttribute("connection");
+
+                SheetPdf sheetPdf = new SheetPdf();
+                sheetPdf.setSheetId(sheet.getId());
+                sheetPdf.setPath(File.separator + "sheet" + File.separator + "pdf" + File.separator + fileName);
+
+                SheetPdfDao.with(connection).insert(sheetPdf);
+
+                out.println("Uploaded Filename: " + fileName + " at " + dir + File.separator + "<br>");
+            }
         }
     }
 

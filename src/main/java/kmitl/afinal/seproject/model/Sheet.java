@@ -6,9 +6,9 @@ public class Sheet extends BaseModel {
     private String type;
     private String title;
     private String subject_id;
-    private int branch_id;
-    private int department_id;
-    private int faculty_id;
+    private Integer branch_id;
+    private Integer department_id;
+    private Integer faculty_id;
     private String create_by;
     private String createTime;
     private String updateTime;
@@ -45,27 +45,27 @@ public class Sheet extends BaseModel {
         this.subject_id = subject_id;
     }
 
-    public int getBranch_id() {
+    public Integer getBranch_id() {
         return branch_id;
     }
 
-    public void setBranch_id(int branch_id) {
+    public void setBranch_id(Integer branch_id) {
         this.branch_id = branch_id;
     }
 
-    public int getDepartment_id() {
+    public Integer getDepartment_id() {
         return department_id;
     }
 
-    public void setDepartment_id(int department_id) {
+    public void setDepartment_id(Integer department_id) {
         this.department_id = department_id;
     }
 
-    public int getFaculty_id() {
+    public Integer getFaculty_id() {
         return faculty_id;
     }
 
-    public void setFaculty_id(int faculty_id) {
+    public void setFaculty_id(Integer faculty_id) {
         this.faculty_id = faculty_id;
     }
 

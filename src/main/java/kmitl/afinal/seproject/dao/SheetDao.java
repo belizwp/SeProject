@@ -55,19 +55,50 @@ public class SheetDao {
         String sql = "INSERT INTO `sheet` (`type`, `title`, `subject_id`, `branch_id`, `department_id`, `faculty_id`, `create_by`) " +
                 "VALUES (?, ?, ?, ?, ?, ?, ?)";
 
-        PreparedStatement stm = connection.prepareStatement(sql);
+        PreparedStatement stm = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
 
         stm.setString(1, sheet.getType());
         stm.setString(2, sheet.getTitle());
-        stm.setString(3, sheet.getSubject_id());
-        stm.setInt(4, sheet.getBranch_id());
-        stm.setInt(5, sheet.getDepartment_id());
-        stm.setInt(6, sheet.getFaculty_id());
+
+        if (sheet.getSubject_id() == null) {
+            stm.setNull(3, Types.VARCHAR);
+        } else {
+            stm.setString(3, sheet.getSubject_id());
+        }
+
+        if (sheet.getBranch_id() == null) {
+            stm.setNull(4, Types.INTEGER);
+        } else {
+            stm.setInt(4, sheet.getBranch_id());
+        }
+
+        if (sheet.getDepartment_id() == null) {
+            stm.setNull(5, Types.INTEGER);
+        } else {
+            stm.setInt(5, sheet.getDepartment_id());
+        }
+
+        if (sheet.getFaculty_id() == null) {
+            stm.setNull(6, Types.INTEGER);
+        } else {
+            stm.setInt(6, sheet.getFaculty_id());
+        }
+
         stm.setString(7, sheet.getCreate_by());
 
-        int lastInsertedId = stm.executeUpdate(sql, Statement.RETURN_GENERATED_KEYS);
+        int affectedRows = stm.executeUpdate();
 
-        return lastInsertedId;
+        if (affectedRows == 0) {
+            throw new SQLException("Creating sheet failed, no rows affected.");
+        }
+
+        try (ResultSet generatedKeys = stm.getGeneratedKeys()) {
+            if (generatedKeys.next()) {
+                return generatedKeys.getInt(1);
+            } else {
+                throw new SQLException("Creating sheet failed, no ID obtained.");
+            }
+        }
     }
 
     private void fillModel(ResultSet rs, List<Sheet> list) throws SQLException {
