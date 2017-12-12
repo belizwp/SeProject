@@ -1,0 +1,166 @@
+@import url('https://fonts.googleapis.com/css?family=Amatic+SC|Kanit:200,300,400,500,700&subset=thai');
+
+@font-face {
+   font-family: DB Object X;
+   src: url(font/DB Object X.ttf);
+}
+
+.select{
+  width: 270px;
+  height: 40px;
+  text-align: center;
+  line-height: 60px;
+  vertical-align: middle;
+  color: #535353;
+
+}
+#select-group{
+  width: 270px;
+  height: 250px;
+  margin-left: 60%;
+  margin-top: 100%;
+}
+#icon-search{
+  width: 45px;
+  height: 46px;
+  position: relative;
+  margin-top: 30px;
+}
+.dropdown{
+  width: 10.62px;
+  height: 14.39px;
+  -webkit-transform: rotate(90deg);
+  -moz-transform: rotate(90deg);
+  -o-transform: rotate(90deg);
+  -ms-transform: rotate(90deg);
+  transform: rotate(90deg);
+  margin-top: 15px;
+  margin-right: 20px;
+}
+#logo{
+  width: 28%;
+  height: 100px;
+}
+#nav-bar{
+  width: 100%;
+  height: 100px;
+  background-color: rgba(255,255,255,0.5);
+  top: 0px;
+  left: 0px;
+  position: fixed;
+}
+.nav{
+  text-align: center;
+  vertical-align: middle;
+}
+div .nav a{
+  display: block;
+  color: #535353;
+  text-decoration: none;
+  opacity: 1;
+  font-family: 'Kanit', sans-serif;
+  font-weight: 300;
+  font-size: 1.2em;
+}
+#logo a{
+  font-family: 'Amatic SC', cursive;
+  font-size: 4em;
+  font-weight: 400;
+}
+p{
+  float: left;
+  margin-top: 0px;
+  margin-bottom: 0px;
+}
+
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #f9f9f9;
+  min-width: 160px;
+  overflow: auto;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.1);
+  z-index: 1;
+  
+}
+.dropdown-content a {
+  color: #535353;
+  padding: 12px 0px;
+  text-decoration: none;
+  display: block;
+  width: 250px;
+  border-bottom: 0.5px solid #dcdcdc;
+  font-family: 'Kanit', sans-serif;
+  font-weight:200;
+}
+
+.dropdown a:hover {
+  background-color: #f1f1f1
+}
+.show {
+  display:block;
+  background-color: #edeef0;
+  margin-left: 10px;
+  
+}
+.dropbtn {
+  outline: none;
+  border: none;
+  cursor: pointer;
+  padding: 0px;
+  background-color: rgba(255,255,255,0);
+  width: 250px;
+  height: 40px;
+  border-bottom: 0.5px solid #a9a9a9;
+  font-size: 17px;
+}
+
+button{
+  margin-top: 15px;
+  text-align: center;
+  line-height: 40px;
+  vertical-align: middle;
+  color: #535353;
+  font-family: kanit;
+  font-weight: 200;
+
+}
+.show_body {
+  width: 100%;
+  margin-top: 130px;
+}
+.show_body h6 {
+  text-align: center;
+  color: white;
+  font-family: kanit;
+}
+table {
+    font-family: kanit, sans-serif;
+    border-collapse: collapse;
+    width: 40%;
+}
+
+td, th {
+    border: 1px solid #aaa;text-align: center;
+    text-align: left;
+    padding: 8px;
+}
+
+tr:nth-child(even) {
+    background-color: #aaa;
+}
+.up{
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  display: flex;
+  width: 250px;
+  height: 200px;
+  background-color: rgba(130,23,43, 0.5);
+}
+.upload{
+  width: 50px;
+  height: 50px;
+  background-image: url(picture/icon_search.svg);
+}
