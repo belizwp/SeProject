@@ -16,7 +16,7 @@
         background-position: center top;
         font-family: 'Kanit', sans-serif;
       }
-      .button{
+.text_input{
     border: 1px solid grey;
     border-radius: 18px;
     text-align: center;
@@ -25,7 +25,7 @@
     height: 40px;
     font-family: 'Kanit', sans-serif;
 }
-.button1{
+.login{
   border: 1px solid #444343;
     border-radius: 18px;
     text-align: center;
@@ -34,9 +34,10 @@
     width: 250px;
     height: 40px;
     font-family: 'Kanit', sans-serif;
+    cursor: pointer;
 }
-.button2{
-  border: 1px solid #444343;
+.btn{
+    border: 1px solid #444343;
     border-radius: 18px;
     text-align: center;
     background-color: #444343;
@@ -44,16 +45,10 @@
     width: 100px;
     height: 40px;
     font-family: 'Kanit', sans-serif;
+    cursor: pointer;
 }
-.iconfacebook{
-  border: 1px solid #444343;
-    border-radius: 18px;
-    text-align: center;
-    background-color: #444343;
-    color: grey;
-    width: 100px;
-    height: 40px;
-    font-family: 'Kanit', sans-serif;
+#iconfacebook{
+    font-size: 1.3em;
 
 }
 
@@ -70,27 +65,22 @@
       <li><a href="login.html">โปรไฟล์</a></li>
     </ul>
 
-      <form action="/action_page.php">
-        <br>
-        <br>
-        <br>
-    <center><input type="text" class="button" placeholder="Username"><br></center>
-    <center><input type="text" class="button" placeholder="Password"><br></center>
-    <center><input type="submit" class="button1" value="Login"></center>
-    <center><div><font color="grey"><href="login.html">ลืมรหัสผ่าน?</a></font></div></center>
+    <form action="/action_page.php">
+      <div style="margin-top: 8%;">
+      <center>
+        <input type="text" class="text_input" placeholder="Username"><br>
+        <input type="text" class="text_input" placeholder="Password"><br>
+        <input type="submit" class="login" value="Login">
+        <div><font color="grey"><a href="login.html">ลืมรหัสผ่าน?</a></font></div>
 
-      <hr width="20%" align="center" size="50" noshade color="grey">
-    <center><font color="grey">ลงทะเบียนหรือเข้าสู่ระบบด้วย</font></center>
+        <hr width="20%" align="center" size="50" noshade color="grey">
+        <font color="grey">ลงทะเบียนหรือเข้าสู่ระบบด้วย</font><br>
 
-    <center><input type="submit" class="button2" value="Sign up"> <input type="submit" class="iconfacebook" value="F" onclick="location.href='search.html'"></center>
+        <input type="button" class="btn" value="Sign up" onclick="location.href='register.html'"> <input type="button" class="btn" id="iconfacebook" value="f" onclick="location.href='www.facebook.com'">
+      </center>
+    </div>
     </form>
     </div>
-
-
-  
-  
-    
-      
 
   </body>
 </html>
