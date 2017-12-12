@@ -1,0 +1,96 @@
+<html>
+  <head>
+    <title>Sheet and Share</title>
+    
+    <link rel="stylesheet" href="foundation.css">
+    <link rel="stylesheet" href="style.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style type="text/css">
+      body{
+        display: flex;
+        width: 100%;
+        height: 100%;
+        background:url('picture/bg1600-900.jpg') 100% no-repeat;
+        background-size: cover;
+        background-position: center top;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="nav-bar">
+      <ul class="menu medium-expanded nav">
+      <li><a href="search.html">ค้นหา</a></li>
+      <li><a href="search.html">เอกสารที่ถูกใจ</a></li>
+      <li id="logo"><a href="search.html">Sheet&Share </a></li>
+      <li><a href="search.html">เอกสารที่แบ่งปัน</a></li>
+      <li><a href="login.html">โปรไฟล์</a></li>
+    </ul>
+    </div>
+
+    <section> 
+    <div id="select-group" align="center">
+      <button onclick="faculty()" class="dropbtn">เลือกคณะ<img src="picture/play-button.svg" class="dropdown" align="right"></button>
+        <div id="myDropdown_faculty" class="dropdown-content">
+            <a href="#home">คณะเทคโนโลยีสารสนเทศ</a>
+            <a href="#about">คณะวิศวกรรมศาสตร์</a>
+            <a href="#contact">คณะวิทยาศาสตร์</a>
+            <a href="#contact">คณะอุตสาหกรรมการผลิต</a>
+        </div>
+      <button onclick="department()" class="dropbtn">เลือกภาควิชา<img src="picture/play-button.svg" class="dropdown" align="right"></button>
+        <div id="myDropdown_department" class="dropdown-content">
+            <a href="#home">Home2</a>
+            <a href="#about">About2</a>
+            <a href="#contact">Contact2</a>
+        </div>
+      <button onclick="branch()" class="dropbtn">เลือกสาขาวิชา<img src="picture/play-button.svg" class="dropdown" align="right"></button>
+        <div id="myDropdown_branch" class="dropdown-content">
+            <a href="#home">Home3</a>
+            <a href="#about">About3</a>
+            <a href="#contact">Contact3</a>
+        </div>
+      <button onclick="year()" class="dropbtn">เลือกชั้นปี<img src="picture/play-button.svg" class="dropdown" align="right"></button>
+        <div id="myDropdown_year" class="dropdown-content">
+            <a href="#home">Home4</a>
+            <a href="#about">About4</a>
+            <a href="#contact">Contact4</a>
+        </div>
+      <a href="subject.html"><img src="picture/icon_search.svg" id="icon-search" onclick=""></a>
+    </div>
+    </section>
+
+    <script>
+      /* When the user clicks on the button, 
+      toggle between hiding and showing the dropdown content */
+      function faculty() {
+          document.getElementById("myDropdown_faculty").classList.toggle("show");
+      }
+      function department() {
+          document.getElementById("myDropdown_department").classList.toggle("show");
+      }
+      function branch() {
+          document.getElementById("myDropdown_branch").classList.toggle("show");
+      }
+      function year() {
+          document.getElementById("myDropdown_year").classList.toggle("show");
+      }
+      
+      // Close the dropdown if the user clicks outside of it
+      window.onclick = function(event) {
+        if (!event.target.matches('.dropbtn')) {
+
+          var dropdowns = document.getElementsByClassName("dropdown-content");
+          var i;
+          for (i = 0; i < dropdowns.length; i++) {
+            var openDropdown = dropdowns[i];
+            if (openDropdown.classList.contains('show')) {
+              openDropdown.classList.remove('show');
+            }
+          }
+        }
+      }
+      </script>
+      
+
+  </body>
+</html>
