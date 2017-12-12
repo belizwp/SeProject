@@ -30,6 +30,17 @@
 
     <section> 
     <div id="select-group" align="center">
+      <button onclick="year2()" class="dropbtn">ปีการศึกษา<img src="picture/play-button.svg" class="dropdown" align="right"></button>
+        <div id="myDropdown_year2" class="dropdown-content">
+            <a href="#home">2560</a>
+            <a href="#about">2559</a>
+            <a href="#contact">2558</a>
+        </div>
+      <button onclick="semester()" class="dropbtn">ภาคเรียน<img src="picture/play-button.svg" class="dropdown" align="right"></button>
+        <div id="myDropdown_semester" class="dropdown-content">
+            <a href="#home">1</a>
+            <a href="#about">2</a>
+        </div>		
       <button onclick="faculty()" class="dropbtn">เลือกคณะ<img src="picture/play-button.svg" class="dropdown" align="right"></button>
         <div id="myDropdown_faculty" class="dropdown-content">
             <a href="#home">คณะเทคโนโลยีสารสนเทศ</a>
@@ -54,7 +65,7 @@
             <a href="#home">Home4</a>
             <a href="#about">About4</a>
             <a href="#contact">Contact4</a>
-        </div>
+        </div>	
       <a href="subject.html"><img src="picture/icon_search.svg" id="icon-search" onclick=""></a>
     </div>
     </section>
@@ -62,6 +73,12 @@
     <script>
       /* When the user clicks on the button, 
       toggle between hiding and showing the dropdown content */
+      function year2() {
+          document.getElementById("myDropdown_year2").classList.toggle("show");
+      }
+      function semester() {
+          document.getElementById("myDropdown_semester").classList.toggle("show");
+      }
       function faculty() {
           document.getElementById("myDropdown_faculty").classList.toggle("show");
       }
@@ -74,7 +91,6 @@
       function year() {
           document.getElementById("myDropdown_year").classList.toggle("show");
       }
-      
       // Close the dropdown if the user clicks outside of it
       window.onclick = function(event) {
         if (!event.target.matches('.dropbtn')) {
