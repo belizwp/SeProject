@@ -1,9 +1,6 @@
 package kmitl.afinal.seproject.servlet;
 
 import kmitl.afinal.seproject.manager.Authenticator;
-import kmitl.afinal.seproject.model.Branch;
-import kmitl.afinal.seproject.model.Department;
-import kmitl.afinal.seproject.model.Faculty;
 import kmitl.afinal.seproject.model.User;
 
 import javax.servlet.ServletException;
@@ -32,9 +29,6 @@ public class RegisterServlet extends HttpServlet {
         fname = request.getParameter("fname");
         lname = request.getParameter("lname");
         email = request.getParameter("email");
-        faculty = request.getParameter("faculty");
-        branch = request.getParameter("branch");
-        department = request.getParameter("department");
 
         Authenticator authenticator = new Authenticator();
 
@@ -44,15 +38,6 @@ public class RegisterServlet extends HttpServlet {
         user.setFname(fname);
         user.setLname(lname);
         user.setEmail(email);
-
-        Faculty fac = new Faculty();
-        fac.setName(faculty);
-
-        Branch br = new Branch();
-        br.setName(branch);
-
-        Department dep = new Department();
-        dep.setName(department);
 
         PrintWriter out = response.getWriter();
 

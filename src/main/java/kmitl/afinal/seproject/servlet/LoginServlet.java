@@ -35,15 +35,15 @@ public class LoginServlet extends HttpServlet {
             if (user != null) {
                 HttpSession session = request.getSession(true);
                 session.setAttribute("user", user);
-                response.sendRedirect("/Profile.jsp");
+                response.sendRedirect("Profile.jsp");
                 out.println("Login success! " + user.getUsername() + ", create on " + user.getCreateTime());
             } else {
-                response.sendRedirect("/loginFailed.html");
+                response.sendRedirect("loginFailed.html");
                 //out.println("Login failed!");
             }
         } catch (SQLException e) {
             e.printStackTrace();
-            response.sendRedirect("/error.html");
+            response.sendRedirect("error.html");
             //out.println("There is something wrong." + e.getMessage());
         }
     }

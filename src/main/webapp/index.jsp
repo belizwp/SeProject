@@ -31,7 +31,7 @@
         <center>
             <h2>Hello SE Project!</h2>
             <br>
-            <input type="button" class="btn" value="Let's start" onclick="location.href='/Search.jsp'">
+            <input type="button" class="btn" value="Let's start" onclick="location.href='Login.jsp'">
         </center>
     </div>
 </body>

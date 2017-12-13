@@ -22,7 +22,7 @@
     </style>
 </head>
 <body>
-<jsp:include page="navbar.jsp"/>
+<jsp:include page="navbar.html"/>
 <form action="/subject" method="get">
     <section>
         <div id="select-group" align="center">

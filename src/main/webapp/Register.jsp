@@ -15,7 +15,7 @@
             display: flex;
             width: 100%;
             height: 100%;
-            background:url('/picture/bg1366-768.jpg') 100% no-repeat;
+            background:url('picture/regis.jpeg') 100% no-repeat;
             background-size: cover;
             background-position: center top;
         }
@@ -23,33 +23,25 @@
             margin-top: 7px;
             margin-left: 40%;
         }
-        .text_input {
-            margin-left: -35%;
-        }
+
     </style>
 </head>
 <body>
-<div id="nav-bar">
-    <ul class="menu medium-expanded nav">
-        <li id="logo"><a href="Search.jsp">Register</a></li>
-    </ul>
+
+<div class="show_body">
+    <jsp:include page="templates/header.html"/>
     <form action="/register">
-        <center>
-            <input type="text" class="text_input" name="fname" placeholder="First name">
-            <input type="text" class="text_input" name="lname" placeholder="Last name">
-            <input type="text" class="text_input" name="username" placeholder="Username">
-            <input type="password" class="text_input" name="password" placeholder="Password">
-            <input type="password" class="text_input" name="confirmpass" placeholder="Comfirm Password">
-            <input type="text" class="text_input" name="email" placeholder="Email">
-            <input type="text" class="text_input" name="faculty" placeholder="Faculty">
-            <input type="text" class="text_input" name="branch" placeholder="Branch">
-            <input type="text" class="text_input" name="department" placeholder="Department">
+        <center style="margin-top: 150px;">
+            <input type="text" class="text_input" name="fname" placeholder="ชื่อ"/>
+            <input type="text" class="text_input" name="lname" placeholder="นามสกุล"/>
+            <input type="text" class="text_input" name="username" placeholder="Username"/>
+            <input type="password" class="text_input" name="password" placeholder="Password"/>
+            <input type="password" class="text_input" name="password" placeholder="Re-Password"/>
+            <input type="text" class="text_input" name="email" placeholder="E-mail"/>
 
-            <input type="submit" class="btn" value="Sign up"></center>
-
+            <input type="submit" class="btn" value="Sign up">
+        </center>
     </form>
-
-</div>
 
 </body>
 </html>
