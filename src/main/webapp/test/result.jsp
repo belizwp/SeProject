@@ -16,7 +16,7 @@
 <jsp:include page="menu.html"/>
 found ${requestScope.result.size()} sheets<br>
 <c:forEach var="sheet" items="${requestScope.result}">
-    <b>${sheet.title}</b> | by ${sheet.create_by} <br>
+    <a href="/viewSheet?id=${sheet.id}"><b>${sheet.title}</b> | by ${sheet.create_by}</a><br>
 </c:forEach>
 </body>
 </html>

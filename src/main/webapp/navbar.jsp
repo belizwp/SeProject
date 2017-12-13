@@ -1,3 +1,4 @@
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <div id="nav-bar">
     <ul class="menu medium-expanded nav">
         <li><a href="/Search.jsp">ค้นหา</a></li>
