@@ -1,3 +1,8 @@
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ page isELIgnored="false" %>
+
+<html>
 <head>
     <title>Sheet and Share</title>
 
@@ -43,3 +48,8 @@
             <input type="submit" class="btn" value="Sign up"></center>
 
     </form>
+
+</div>
+
+</body>
+</html>
