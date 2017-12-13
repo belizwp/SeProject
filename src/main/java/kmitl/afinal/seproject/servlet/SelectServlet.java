@@ -29,7 +29,7 @@ public class SelectServlet extends HttpServlet {
         String type = request.getParameter("type");
         int id = partseInt(request.getParameter("id"));
         int semester = partseInt(request.getParameter("semester"));
-        String def = request.getParameter("def");
+        String text = request.getParameter("text");
 
         List<BaseModel> list;
         PrintWriter out = response.getWriter();
@@ -37,8 +37,8 @@ public class SelectServlet extends HttpServlet {
         try {
             Connection connection = (Connection) getServletContext().getAttribute("connection");
 
-            if (def != null && def.equals("all")) {
-                printOption(0, "--ทั้งหมด--", out);
+            if (text != null) {
+                printOption(0, text, out);
             } else {
                 printOption(0, "--ไม่ระบุ--", out);
             }
