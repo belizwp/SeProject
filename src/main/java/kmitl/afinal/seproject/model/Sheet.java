@@ -5,6 +5,7 @@ public class Sheet extends BaseModel {
     private int id;
     private String type;
     private String title;
+    private Integer term;
     private String subject_id;
     private Integer branch_id;
     private Integer department_id;
@@ -35,6 +36,14 @@ public class Sheet extends BaseModel {
 
     public void setTitle(String title) {
         this.title = title;
+    }
+
+    public Integer getTerm() {
+        return term;
+    }
+
+    public void setTerm(Integer term) {
+        this.term = term;
     }
 
     public String getSubject_id() {

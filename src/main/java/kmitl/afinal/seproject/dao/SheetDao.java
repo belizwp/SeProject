@@ -52,39 +52,45 @@ public class SheetDao {
     }
 
     public int insert(Sheet sheet) throws SQLException {
-        String sql = "INSERT INTO `sheet` (`type`, `title`, `subject_id`, `branch_id`, `department_id`, `faculty_id`, `create_by`) " +
-                "VALUES (?, ?, ?, ?, ?, ?, ?)";
+        String sql = "INSERT INTO `sheet` (`type`, `title`, `term`, `subject_id`, `branch_id`, `department_id`, `faculty_id`, `create_by`) " +
+                "VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
 
         PreparedStatement stm = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
 
         stm.setString(1, sheet.getType());
         stm.setString(2, sheet.getTitle());
 
-        if (sheet.getSubject_id() == null) {
-            stm.setNull(3, Types.VARCHAR);
+        if (sheet.getTerm() == null) {
+            stm.setNull(3, Types.INTEGER);
         } else {
-            stm.setString(3, sheet.getSubject_id());
+            stm.setInt(3, sheet.getTerm());
+        }
+
+        if (sheet.getSubject_id() == null) {
+            stm.setNull(4, Types.VARCHAR);
+        } else {
+            stm.setString(4, sheet.getSubject_id());
         }
 
         if (sheet.getBranch_id() == null) {
-            stm.setNull(4, Types.INTEGER);
+            stm.setNull(5, Types.INTEGER);
         } else {
-            stm.setInt(4, sheet.getBranch_id());
+            stm.setInt(5, sheet.getBranch_id());
         }
 
         if (sheet.getDepartment_id() == null) {
-            stm.setNull(5, Types.INTEGER);
+            stm.setNull(6, Types.INTEGER);
         } else {
-            stm.setInt(5, sheet.getDepartment_id());
+            stm.setInt(6, sheet.getDepartment_id());
         }
 
         if (sheet.getFaculty_id() == null) {
-            stm.setNull(6, Types.INTEGER);
+            stm.setNull(7, Types.INTEGER);
         } else {
-            stm.setInt(6, sheet.getFaculty_id());
+            stm.setInt(7, sheet.getFaculty_id());
         }
 
-        stm.setString(7, sheet.getCreate_by());
+        stm.setString(8, sheet.getCreate_by());
 
         int affectedRows = stm.executeUpdate();
 
@@ -136,6 +142,7 @@ public class SheetDao {
             sheet.setId(rs.getInt("id"));
             sheet.setType(rs.getString("type"));
             sheet.setTitle(rs.getString("title"));
+            sheet.setTerm(rs.getInt("term"));
             sheet.setSubject_id(rs.getString("subject_id"));
             sheet.setBranch_id(rs.getInt("branch_id"));
             sheet.setDepartment_id(rs.getInt("department_id"));
