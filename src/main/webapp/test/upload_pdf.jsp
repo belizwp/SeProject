@@ -25,8 +25,8 @@
                     <td>
                         <select name="semester" id="semester-list" onchange="getSubjectWithSemester(this.value)">
                             <option value=0>--ไม่ระบุ--</option>
-                            <option value="1">1</option>
-                            <option value="2">2</option>
+                            <option value=1>1</option>
+                            <option value=2>2</option>
                         </select>
                     </td>
                 </tr>
@@ -73,6 +73,16 @@
                     <td>
                         <select name="subject" id="subject-list">
                             <option value=0>--ไม่ระบุ--</option>
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                    <td>ช่วง</td>
+                    <td>
+                        <select name="term" id="term-list">
+                            <option value=0>--ไม่ระบุ--</option>
+                            <option value=1>Mid</option>
+                            <option value=2>Final</option>
                         </select>
                     </td>
                 </tr>

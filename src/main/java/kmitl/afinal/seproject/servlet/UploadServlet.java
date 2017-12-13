@@ -116,6 +116,8 @@ public class UploadServlet extends HttpServlet {
                     sheet.setBranch_id(fieldValue.equals("0") ? null : Integer.parseInt(fieldValue));
                 } else if ("subject".equals(fieldName)) {
                     sheet.setSubject_id(fieldValue.equals("0") ? null : fieldValue);
+                } else if ("term".equals(fieldName)) {
+                    sheet.setTerm(fieldValue.equals("0") ? null : Integer.parseInt(fieldValue));
                 }
             }
         }
