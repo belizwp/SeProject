@@ -1,7 +1,10 @@
 package kmitl.afinal.seproject.servlet;
 
 import kmitl.afinal.seproject.dao.SheetDao;
+import kmitl.afinal.seproject.dao.SubjectDao;
 import kmitl.afinal.seproject.model.Sheet;
+import kmitl.afinal.seproject.model.SheetView;
+import kmitl.afinal.seproject.model.SubjectView;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -9,7 +12,6 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.List;
@@ -20,13 +22,16 @@ public class ViewSheetAll extends HttpServlet {
     public void processRequest(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException, SQLException {
         response.setContentType("text/html");
 
-        Connection connection = (Connection) getServletContext().getAttribute("connection");
-        List<Sheet> sheetList = SheetDao.with(connection).getAll();
+        int subjectId = Integer.parseInt(request.getParameter("subject_id"));
 
-        PrintWriter out = response.getWriter();
-        for (Sheet sheet : sheetList) {
-            out.println(sheet);
-        }
+        Connection connection = (Connection) getServletContext().getAttribute("connection");
+
+        List<SheetView> sheetViewList = SheetDao.with(connection).getSheetView(subjectId);
+        SubjectView subjectView = SubjectDao.with(connection).getSubjectView(subjectId);
+
+        request.setAttribute("sheetList", sheetViewList);
+        request.setAttribute("subjectView", subjectView);
+        request.getRequestDispatcher("sheet.jsp").forward(request, response);
     }
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

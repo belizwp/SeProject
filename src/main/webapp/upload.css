@@ -23,6 +23,7 @@ form{
 form input{
   position: relative;
   margin-left: -100px;
+  
 }
 form button{
   margin: 0;
@@ -57,6 +58,7 @@ form button:active{
     font-weight: 300;
     margin-top: 25px; 
     margin-left: -85px;
+    font-weight: 300;
 }
 [type='text']:focus{
   background-color: #ffffff00;
@@ -70,4 +72,8 @@ form button:active{
   #btn_upload{
     margin-left: -40px;
   }
+}
+input::placeholder {
+  color: #ffffff
+
 }

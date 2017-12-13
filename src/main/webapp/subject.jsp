@@ -1,3 +1,6 @@
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ page isELIgnored="false" %>
 <html>
 <head>
     <title>Sheet and Share</title>
@@ -39,57 +42,57 @@
             <h6>เลือกรายชื่อวิชา</h6>
             <center>
                 <table class="time">
-                    <th class="tablinks active" onclick="openSubject(event, 'midterm')">กลางภาค</th>
-                    <th class="tablinks" onclick="openSubject(event, 'final')">ไฟนอล</th>
+                    <th class="tablinks active text-center" onclick="openSubject(event, 'midterm')">เทอม 1</th>
+                    <th class="tablinks text-center" onclick="openSubject(event, 'final')">เทอม 2</th>
                 </table>
             </center>
 
             <ul class="menu2" id="midterm">
-                <li><input type="image" class="previous" src="picture/previous.svg"/></li>
                 <li>
                     <table class="sub">
-                        <tr>
-                            <td><a href="sheet.html">06016319 Introfuction to Computer System</a></td>
-                        </tr>
-                        <tr>
-                            <td>06016319 Introfuction to Computer System</td>
-                        </tr>
-                        <tr>
-                            <td>06016319 Introfuction to Computer System</td>
-                        </tr>
-                        <tr>
-                            <td>06016319 Introfuction to Computer System</td>
-                        </tr>
-                        <tr>
-                            <td>06016319 Introfuction to Computer System</td>
-                        </tr>
+                        <c:choose>
+                            <c:when test="${requestScope.first.size() > 0}">
+                                <c:forEach var="subject" items="${requestScope.first}">
+                                    <tr>
+                                        <td>
+                                            <a href="/viewSheetAll?subject_id=${subject.id}">${subject.id} ${subject.name}</a>
+                                        </td>
+                                    </tr>
+                                </c:forEach>
+                            </c:when>
+                            <c:otherwise>
+                                <tr>
+                                    <td>
+                                        <center>ไม่พบวิชาสำหรับเทอมนี้</center>
+                                    </td>
+                                </tr>
+                            </c:otherwise>
+                        </c:choose>
                     </table>
                 </li>
-                <li><input type="image" class="next" src="picture/next.svg"/></li>
             </ul>
 
             <ul class="menu2" id="final">
-                <li><input type="image" class="previous" src="picture/previous.svg"/></li>
                 <li>
                     <table class="sub">
-                        <tr>
-                            <td><a href="sheet.html">Test final</a></td>
-                        </tr>
-                        <tr>
-                            <td>06016319 Introfuction to Computer System</td>
-                        </tr>
-                        <tr>
-                            <td>06016319 Introfuction to Computer System</td>
-                        </tr>
-                        <tr>
-                            <td>06016319 Introfuction to Computer System</td>
-                        </tr>
-                        <tr>
-                            <td>06016319 Introfuction to Computer System</td>
-                        </tr>
+                        <c:choose>
+                            <c:when test="${requestScope.first.size() > 0}">
+                                <c:forEach var="subject" items="${requestScope.second}">
+                                    <tr>
+                                        <td><a href="sheet.html">${subject.id} ${subject.name}</a></td>
+                                    </tr>
+                                </c:forEach>
+                            </c:when>
+                            <c:otherwise>
+                                <tr>
+                                    <td>
+                                        <center>ไม่พบวิชาสำหรับเทอมนี้</center>
+                                    </td>
+                                </tr>
+                            </c:otherwise>
+                        </c:choose>
                     </table>
                 </li>
-                <li><input type="image" class="next" src="picture/next.svg"/></li>
             </ul>
 
         </div>
