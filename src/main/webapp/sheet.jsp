@@ -38,7 +38,7 @@
 <body>
 <jsp:include page="navbar.html"/>
 <c:set var="subject" value="${requestScope.subjectView}"/>
-<form action="/collector" method="get">
+<form action="/collector" method="post">
     <div class="show_body" align="center">
         <h4>วิชา ${subject.name} รหัสวิชา ${subject.id}</h4>
         <h6>ชั้นปีที่ ${subject.year} ภาคเรียนที่ ${subject.semester} สาขา ${subject.branchName}
