@@ -101,6 +101,34 @@ public class SheetDao {
         }
     }
 
+    public List<Sheet> search(Sheet info) throws SQLException {
+        String sql = "SELECT * FROM `sheet` WHERE 1=1 ";
+
+        if (info.getTitle() != null) {
+            String[] keywords = info.getTitle().split(" ");
+            sql += keywords.length > 1 ?
+                    " AND MATCH (title) AGAINST ('" + info.getTitle() + "' IN NATURAL LANGUAGE MODE)" :
+                    " AND title LIKE '%" + info.getTitle() + "%' ";
+        }
+
+        sql += info.getFaculty_id() != null ? " AND faculty_id=" + info.getFaculty_id() : "";
+        sql += info.getDepartment_id() != null ? " AND department_id=" + info.getDepartment_id() : "";
+        sql += info.getBranch_id() != null ? " AND branch_id=" + info.getBranch_id() : "";
+        sql += info.getSubject_id() != null ? " AND subject_id=" + info.getSubject_id() : "";
+
+        sql += " ORDER BY `create_time` DESC";
+
+        PreparedStatement stm = connection.prepareStatement(sql);
+
+        ResultSet rs = stm.executeQuery();
+
+        List<Sheet> list = new ArrayList<>();
+
+        fillModel(rs, list);
+
+        return list;
+    }
+
     private void fillModel(ResultSet rs, List<Sheet> list) throws SQLException {
         while (rs.next()) {
             Sheet sheet = new Sheet();
