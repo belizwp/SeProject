@@ -4,6 +4,7 @@
 <html>
 <head>
     <title>Sheet and Share</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 
     <link rel="stylesheet" href="foundation.css">
     <link rel="stylesheet" href="style.css">
@@ -30,49 +31,50 @@
         <li><a href="/Profile.jsp">Profile</a></li>
     </ul>
 </div>
+<form action="/search" method="get">
+    <section>
+        <div id="select-group" align="center">
 
-<section>
-    <div id="select-group" align="center">
-        <select>
-            <option selected="" disabled="">ปีการศึกษา</option>
-            <option value="saab">Saab</option>
-            <option value="opel">Opel</option>
-            <option value="audi">Audi</option>
-        </select>
-        <select>
-            <option selected="" disabled="">ภาคเรียน</option>
-            <option value="saab">Saab</option>
-            <option value="opel">Opel</option>
-            <option value="audi">Audi</option>
-        </select>
-        <select>
-            <option selected="" disabled="">เลือกคณะ</option>
-            <option value="saab">Saab</option>
-            <option value="opel">Opel</option>
-            <option value="audi">Audi</option>
-        </select>
-        <select>
-            <option selected="" disabled="">เลือกภาควิชา</option>
-            <option value="saab">Saab</option>
-            <option value="opel">Opel</option>
-            <option value="audi">Audi</option>
-        </select>
-        <select>
-            <option selected="" disabled="">เลือกสาขาวิชา</option>
-            <option value="saab">Saab</option>
-            <option value="opel">Opel</option>
-            <option value="audi">Audi</option>
-        </select>
-        <select>
-            <option selected="" disabled="">เลือกชั้นปี</option>
-            <option value="saab">Saab</option>
-            <option value="opel">Opel</option>
-            <option value="audi">Audi</option>
-        </select>
+            <input type="text" class="text_input" name="title" placeholder="File name">
+
+            <select name="faculty" id="faculty-list" onchange="getDepartment(this.value)">
+                <option selected="" disabled="">เลือกคณะ</option>
+                <option value=0>--ทั้งหมด--</option>
+                <sql:query dataSource="${dataSource}" var="faculty_rows">
+                    SELECT * from `faculty`;
+                </sql:query>
+                <c:forEach var="faculty" items="${faculty_rows.rows}">
+                    <option value='${faculty.id}'>${faculty.name}</option>
+                </c:forEach>
+            </select>
+
+            <select name="department" id="department-list" onchange="getBranch(this.value)">
+                <option selected="" disabled="">เลือกภาควิชา</option>
+                <option value="0">--ทั้งหมด--</option>
+
+            </select>
+
+            <select name="branch" id="branch-list" onchange="getSubject(this.value)">
+                <option selected="" disabled="">เลือกสาขาวิชา</option>
+                <option value="0">--ทั้งหมด--</option>
+
+            </select>
+
+            <select name="year" id="year-list" onchange="getSubjectWithYear(this.value)">
+                <option selected="" disabled="">เลือกชั้นปี</option>
+                <option value="0">--ทั้งหมด--</option>
+
+            </select>
+
+            <select name="subject" id="subject-list" onchange="">
+                <option selected="" disabled="">วิชา</option>
+
+            </select>
 
         <a href="subject.html"><img src="picture/icon_search.svg" id="icon-search" onclick=""></a>
-        <jsp:include page="templates/header.jsp"/>
-
+        </div>
+    </section><jsp:include page="templates/header.jsp"/>
+</form>
 </body>
 </html>
 
