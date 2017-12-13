@@ -36,7 +36,6 @@
     </style>
 </head>
 <body>
-<jsp:include page="navbar.html"/>
 <c:set var="subject" value="${requestScope.subjectView}"/>
 <form action="/collector" method="post">
     <div class="show_body" align="center">
@@ -84,5 +83,6 @@
         </c:if>
     </div>
 </form>
+<jsp:include page="navbar.html"/>
 </body>
 </html>

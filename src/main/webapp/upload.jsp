@@ -36,7 +36,6 @@
     </style>
 </head>
 <body>
-<jsp:include page="navbar.html"/>
 <c:set var="subject" value="${requestScope.subjectView}"/>
 <form action="/upload" method="post" enctype="multipart/form-data">
     <input type="hidden" name="type" value="pdf">
@@ -62,6 +61,7 @@
         </center>
     </div>
 </form>
+<jsp:include page="navbar.html"/>
 </body>
 <script type="text/javascript">
     $(document).ready(function () {
