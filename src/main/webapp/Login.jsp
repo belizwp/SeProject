@@ -1,13 +1,13 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ page isELIgnored="false" %>
-<html lang="en">
+<div lang="en">
 <head>
     <meta charset="UTF-8">
     <title>Login</title>
 </head>
-<body>
-    <jsp:include page="/templates/header.jsp"/>
+
+<jsp:include page="/templates/header.jsp"/>
     <c:set var="user" value="${sessionScope.user}"/>
     <c:choose>
         <c:when test="${user != null}">
@@ -25,12 +25,13 @@
                         <hr width="20%" align="center" size="50" noshade color="grey">
                         <font color="grey">ลงทะเบียนหรือเข้าสู่ระบบด้วย</font><br>
 
-                        <input type="button" class="btn" value="Sign up" onclick="location.href='register.html'"> <input type="button" class="btn" id="iconfacebook" value="f" onclick="location.href='www.facebook.com'">
+                        <input type="button" class="btn" value="Sign up" onclick="location.href='Register.jsp'"> <input type="button" class="btn" id="iconfacebook" value="f" onclick="location.href='www.facebook.com'">
                     </center>
                 </div>
                 <jsp:include page="templates/footer.jsp"/>
             </form>
         </c:otherwise>
     </c:choose>
+</div>
 </body>
 </html>

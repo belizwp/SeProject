@@ -1,6 +1,6 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<html>
+
 <head>
     <title>Header | Search Sheet Please</title>
 
@@ -17,6 +17,45 @@
             background-size: cover;
             background-position: center top;
             font-family: 'Kanit', sans-serif;
+        }.button{
+             border: 1px solid grey;
+             border-radius: 18px;
+             text-align: center;
+             background-color: white;
+             width: 250px;
+             height: 40px;
+             font-family: 'Kanit', sans-serif;
+         }
+        .button1{
+            border: 1px solid #444343;
+            border-radius: 18px;
+            text-align: center;
+            background-color: #444343;
+            color: #E7E5E5;
+            width: 250px;
+            height: 40px;
+            font-family: 'Kanit', sans-serif;
+        }
+        .button2{
+            border: 1px solid #444343;
+            border-radius: 18px;
+            text-align: center;
+            background-color: #444343;
+            color: grey;
+            width: 100px;
+            height: 40px;
+            font-family: 'Kanit', sans-serif;
+        }
+        .iconfacebook{
+            border: 1px solid #444343;
+            border-radius: 18px;
+            text-align: center;
+            background-color: #444343;
+            color: grey;
+            width: 100px;
+            height: 40px;
+            font-family: 'Kanit', sans-serif;
+
         }
 
     </style>
@@ -25,8 +64,8 @@
     <div id="nav-bar">
         <ul class="menu medium-expanded nav">
             <li><a href="/Search.jsp">Search</a></li>
+            <li><a href="">เอกสารที่ถูกใจ</a></li>
+            <li id="logo"><a href="/Search.jsp">Sheet&Share </a></li>
+            <li><a href="">เอกสารที่แบ่งปัน</a></li>
             <li><a href="/Profile.jsp">Profile</a></li>
-            <li id="logo"><a href="/search.html">Sheet&Share </a></li>
-            <li><a href="/Login.jsp">Login</a></li>
-            <li><a href="/logout">Logout</a></li>
         </ul>

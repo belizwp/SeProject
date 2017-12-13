@@ -10,8 +10,13 @@
 <body>
 <jsp:include page="/templates/header.jsp"/>
 <c:set var="user" value="${sessionScope.user}"/>
+<c:set var="fac" value="${sessionScope.fac}"/>
+<c:set var="br" value="${sessionScope.br}"/>
+<c:set var="dep" value="${sessionScope.dep}"/>
 <c:choose>
     <c:when test="${user != null}">
+        <br>
+        <br>
         <center>
         <table border="1">
             <tbody>
@@ -20,16 +25,28 @@
                 <td>${user.username}</td>
             </tr>
             <tr>
-                <td>Fname</td>
+                <td>First name</td>
                 <td>${user.fname}</td>
             </tr>
             <tr>
-                <td>Lname</td>
+                <td>Last name</td>
                 <td>${user.lname}</td>
             </tr>
             <tr>
                 <td>Email</td>
                 <td>${user.email}</td>
+            </tr>
+            <tr>
+                <td>Faculty</td>
+                <td>${fac.faculty}</td>
+            </tr>
+            <tr>
+                <td>Branch</td>
+                <td>${br.branch}</td>
+            </tr>
+            <tr>
+                <td>Department</td>
+                <td>${dep.department}</td>
             </tr>
             <tr>
                 <td>create_time</td>
@@ -40,11 +57,13 @@
                 <td>${user.updateTime}</td>
             </tr>
             </tbody>
-        </table></center>
+        </table>
+        <input type="button" class="btn" value="Logout" onclick="location.href='/logout'"></center>
     </c:when>
     <c:otherwise>
         <jsp:include page="/Login.jsp"/>
     </c:otherwise>
 </c:choose>
+
 </body>
 </html>

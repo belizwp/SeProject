@@ -56,6 +56,7 @@ public class RegisterServlet extends HttpServlet {
 
         try {
             if (authenticator.register(user, connection)) {
+                response.sendRedirect("Login.jsp");
                 out.println("Register success!");
             } else {
                 out.println("Register failed!");
