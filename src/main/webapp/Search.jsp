@@ -23,14 +23,12 @@
 </head>
 <body>
 <jsp:include page="navbar.html"/>
-<form action="/search" method="get">
+<form action="/subject" method="get">
     <section>
         <div id="select-group" align="center">
 
-            <input type="text" class="text_input" name="title" placeholder="ชื่อไฟล์">
-
-            <select name="faculty" id="faculty-list" onchange="getDepartment(this.value)">
-                <option selected value=0>เลือกคณะ</option>
+            <select name="faculty" id="faculty-list" onchange="getDepartment(this.value)" required>
+                <option selected disabled value="">เลือกคณะ</option>
                 <sql:query dataSource="${dataSource}" var="faculty_rows">
                     SELECT * from `faculty`;
                 </sql:query>
@@ -39,23 +37,19 @@
                 </c:forEach>
             </select>
 
-            <select name="department" id="department-list" onchange="getBranch(this.value)">
-                <option selected value=0>เลือกภาควิชา</option>
+            <select name="department" id="department-list" onchange="getBranch(this.value)" required>
+                <option selected disabled value="">เลือกภาควิชา</option>
             </select>
 
-            <select name="branch" id="branch-list" onchange="getSubject(this.value)">
-                <option selected value=0>เลือกสาขาวิชา</option>
+            <select name="branch" id="branch-list" onchange="getSubject(this.value)" required>
+                <option selected disabled value="">เลือกสาขาวิชา</option>
             </select>
 
-            <select name="year" id="year-list" onchange="getSubjectWithYear(this.value)">
-                <option selected value=0>เลือกชั้นปี</option>
+            <select name="year" id="year-list" required>
+                <option selected disabled value="">เลือกชั้นปี</option>
             </select>
 
-            <select name="subject" id="subject-list" onchange="">
-                <option selected value=0>วิชา</option>
-            </select>
-
-            <input id="icon-search" type="image" src="picture/icon_search.svg" border="0" alt="Submit" />
+            <input id="icon-search" type="image" src="picture/icon_search.svg" border="0" alt="Submit"/>
         </div>
     </section>
 </form>
@@ -66,7 +60,7 @@
             .find('option')
             .remove()
             .end()
-            .append('<option selected value=0>' + text + '</option>')
+            .append('<option selected disabled value="">' + text + '</option>')
         ;
     }
 

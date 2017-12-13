@@ -38,9 +38,9 @@ public class SelectServlet extends HttpServlet {
             Connection connection = (Connection) getServletContext().getAttribute("connection");
 
             if (text != null) {
-                printOption(0, text, out);
+                printFirstOption(0, text, out);
             } else {
-                printOption(0, "--ไม่ระบุ--", out);
+                printFirstOption(0, "--ไม่ระบุ--", out);
             }
 
             if ("department".equals(type)) {
@@ -97,6 +97,10 @@ public class SelectServlet extends HttpServlet {
                 printOption(year.getYear(), year.getYear(), out);
             }
         }
+    }
+
+    private void printFirstOption(int value, String name, PrintWriter out) {
+        out.println("<option selected disabled value=''>" + name + "</option>");
     }
 
     private void printOption(int value, String name, PrintWriter out) {
