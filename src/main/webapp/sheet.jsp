@@ -64,10 +64,10 @@
                     <center>${sheet.updateTime}</center>
                 </td>
                 <td class="view">
-                    <center><a>VIEW</a></center>
+                    <center><a href="/viewSheet?id=${sheet.id}">VIEW</a></center>
                 </td>
                 <td class="download">
-                    <center><a>DOWNLOAD</a></center>
+                    <center><a href="${sheet.pdfPath}">DOWNLOAD</a></center>
                 </td>
             </tr>
         </c:forEach>

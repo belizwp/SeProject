@@ -1,6 +1,7 @@
 package kmitl.afinal.seproject.dao;
 
 import kmitl.afinal.seproject.model.Sheet;
+import kmitl.afinal.seproject.model.SheetView;
 
 import java.sql.*;
 import java.util.ArrayList;
@@ -75,6 +76,38 @@ public class SheetDao {
         List<Sheet> list = new ArrayList<Sheet>();
 
         fillModel(rs, list);
+
+        return list;
+    }
+
+    public List<SheetView> getSheetView(int subjectId) throws SQLException {
+        String sql = "SELECT d1.id, d2.id as pdf_id, d1.type, d1.title, d2.path as pdf_path, d1.create_by, d1.create_time, d1.update_time " +
+                "FROM sedb.sheet AS d1 " +
+                "INNER JOIN sedb.sheet_pdf AS d2 " +
+                "ON  (d1.id = d2.sheet_id) " +
+                "WHERE subject_id = ? " +
+                "ORDER BY update_time DESC";
+
+        PreparedStatement stm = connection.prepareStatement(sql);
+        stm.setInt(1, subjectId);
+        ResultSet rs = stm.executeQuery();
+
+        List<SheetView> list = new ArrayList<SheetView>();
+
+        while (rs.next()) {
+            SheetView sheetView = new SheetView();
+
+            sheetView.setId(rs.getInt("id"));
+            sheetView.setPdfId(rs.getInt("pdf_id"));
+            sheetView.setType(rs.getString("type"));
+            sheetView.setTitle(rs.getString("title"));
+            sheetView.setPdfPath(rs.getString("pdf_path"));
+            sheetView.setCreate_by(rs.getString("create_by"));
+            sheetView.setCreateTime(rs.getString("create_time"));
+            sheetView.setUpdateTime(rs.getString("update_time"));
+
+            list.add(sheetView);
+        }
 
         return list;
     }

@@ -3,6 +3,7 @@ package kmitl.afinal.seproject.servlet;
 import kmitl.afinal.seproject.dao.SheetDao;
 import kmitl.afinal.seproject.dao.SubjectDao;
 import kmitl.afinal.seproject.model.Sheet;
+import kmitl.afinal.seproject.model.SheetView;
 import kmitl.afinal.seproject.model.SubjectView;
 
 import javax.servlet.ServletException;
@@ -25,10 +26,10 @@ public class ViewSheetAll extends HttpServlet {
 
         Connection connection = (Connection) getServletContext().getAttribute("connection");
 
-        List<Sheet> sheetList = SheetDao.with(connection).getSheetBySubjectId(subjectId);
+        List<SheetView> sheetViewList = SheetDao.with(connection).getSheetView(subjectId);
         SubjectView subjectView = SubjectDao.with(connection).getSubjectView(subjectId);
 
-        request.setAttribute("sheetList", sheetList);
+        request.setAttribute("sheetList", sheetViewList);
         request.setAttribute("subjectView", subjectView);
         request.getRequestDispatcher("sheet.jsp").forward(request, response);
     }
