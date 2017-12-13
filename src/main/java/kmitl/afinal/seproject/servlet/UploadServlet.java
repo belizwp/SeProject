@@ -21,7 +21,6 @@ import java.io.PrintWriter;
 import java.io.UnsupportedEncodingException;
 import java.sql.Connection;
 import java.sql.SQLException;
-import java.util.Iterator;
 import java.util.List;
 
 @MultipartConfig
@@ -77,24 +76,20 @@ public class UploadServlet extends HttpServlet {
             // Parse the request to get file items.
             List<FileItem> fileItems = upload.parseRequest(request);
 
-            out.println("<html>");
-            out.println("<head>");
-            out.println("<title>Servlet upload</title>");
-            out.println("</head>");
-            out.println("<body>");
-
             Sheet sheet = uploadSheetInfo(fileItems, request);
 
             if (sheet.getType().equals("pdf")) {
                 uploadPdfFile(fileItems, sheet, out);
             } else {
-                out.println("no supported file type.");
+                // No support file type
+                request.getRequestDispatcher("").forward(request, response);
             }
 
-            out.println("</body>");
-            out.println("</html>");
+            request.getRequestDispatcher("/Profile.jsp").forward(request, response);
+
         } catch (Exception ex) {
             ex.printStackTrace();
+            request.getRequestDispatcher("").forward(request, response);
         }
     }
 
@@ -154,8 +149,6 @@ public class UploadServlet extends HttpServlet {
                 sheetPdf.setPath(File.separator + "sheet" + File.separator + "pdf" + File.separator + fileName);
 
                 SheetPdfDao.with(connection).insert(sheetPdf);
-
-                out.println("Uploaded Filename: " + fileName + " at " + dir + File.separator + "<br>");
             }
         }
     }
