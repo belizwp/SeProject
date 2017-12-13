@@ -67,7 +67,7 @@
                     <center><a href="/viewSheet?id=${sheet.id}">VIEW</a></center>
                 </td>
                 <td class="download">
-                    <center><a href="${sheet.pdfPath}">DOWNLOAD</a></center>
+                    <center><a href="${sheet.pdfPath}" download>DOWNLOAD</a></center>
                 </td>
             </tr>
         </c:forEach>

@@ -137,7 +137,7 @@ public class UploadServlet extends HttpServlet {
 
     private void uploadPdfFile(List<FileItem> fileItems, Sheet sheet, PrintWriter out) throws Exception {
         File dir = new File(filePath + "sheet" + File.separator + "pdf" + File.separator);
-        String fileName = sheet.getId() + ".pdf";
+        String fileName = sheet.getId() + "_" + sheet.getTitle().trim().replaceAll("\\s+", "_") + "_upload_by_" + sheet.getCreate_by() + ".pdf";
 
         for (FileItem item : fileItems) {
             if (!item.isFormField()) {
