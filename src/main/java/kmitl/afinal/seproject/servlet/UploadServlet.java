@@ -18,6 +18,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.File;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.io.UnsupportedEncodingException;
 import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.Iterator;
@@ -41,7 +42,9 @@ public class UploadServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         // Check that we have a file upload request
         isMultipart = ServletFileUpload.isMultipartContent(request);
-        response.setContentType("text/html");
+        request.setCharacterEncoding("UTF-8");
+        response.setCharacterEncoding("UTF-8");
+        response.setContentType("text/html;charset=UTF-8");
         PrintWriter out = response.getWriter();
 
         if (!isMultipart) {
@@ -95,7 +98,7 @@ public class UploadServlet extends HttpServlet {
         }
     }
 
-    private Sheet uploadSheetInfo(List<FileItem> fileItems, HttpServletRequest request) throws SQLException {
+    private Sheet uploadSheetInfo(List<FileItem> fileItems, HttpServletRequest request) throws SQLException, UnsupportedEncodingException {
         Sheet sheet = new Sheet();
 
         for (FileItem item : fileItems) {
@@ -107,7 +110,7 @@ public class UploadServlet extends HttpServlet {
                 if ("type".equals(fieldName)) {
                     sheet.setType(fieldValue);
                 } else if ("title".equals(fieldName)) {
-                    sheet.setTitle(fieldValue);
+                    sheet.setTitle(item.getString("UTF-8").trim());
                 } else if ("faculty".equals(fieldName)) {
                     sheet.setFaculty_id(fieldValue.equals("0") ? null : Integer.parseInt(fieldValue));
                 } else if ("department".equals(fieldName)) {

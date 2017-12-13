@@ -20,6 +20,8 @@ import java.sql.SQLException;
 public class RegisterServlet extends HttpServlet {
 
     public void processRequest(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        request.setCharacterEncoding("UTF-8");
+        response.setCharacterEncoding("UTF-8");
         response.setContentType("text/html");
 
         Connection connection = (Connection) getServletContext().getAttribute("connection");
