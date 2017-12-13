@@ -1,8 +1,8 @@
-<!DOCTYPE html>
 <html>
-<head>
-	<title>Profile</title>
-	<link rel="stylesheet" href="foundation.css">
+  <head>
+    <title>Profile</title>
+    
+    <link rel="stylesheet" href="foundation.css">
     <link rel="stylesheet" href="style.css">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -11,61 +11,64 @@
         display: flex;
         width: 100%;
         height: 100%;
-        background:url('picture/login.jpg') 100% no-repeat;
+        background:url('picture/profile.jpg') 100% no-repeat;
         background-size: cover;
         background-position: center top;
         font-family: 'Kanit', sans-serif;
       }
-      .areaname{
-      	border: 1px solid grey;
-    border-radius: 18px;
-    text-align: center;
-    background-color: white;
-    width: 250px;
-    height: 40px;
-    font-family: 'Kanit', sans-serif;
-      }
-      .submit{
-    border: 1px solid #444343;
-    border-radius: 18px;
-    text-align: center;
-    background-color: #444343;
-    color: grey;
-    width: 100px;
-    height: 40px;
-    font-family: 'Kanit', sans-serif;
-      }
-      .birthday{
-      	border: 1px solid #444343;
-    border-radius: 18px;
-    text-align: center;
-    background-color: white;
-    color: grey;
-    width: 100px;
-    height: 40px;
-    font-family: 'Kanit', sans-serif;
-      }
 
     </style>
-</head>
-<body>
-	<div id="nav-bar">
+  </head>
+  <body>
+    <div id="nav-bar">
       <ul class="menu medium-expanded nav">
       <li><a href="search.html">ค้นหา</a></li>
       <li><a href="search.html">เอกสารที่ถูกใจ</a></li>
       <li id="logo"><a href="search.html">Sheet&Share </a></li>
       <li><a href="search.html">เอกสารที่แบ่งปัน</a></li>
       <li><a href="login.html">โปรไฟล์</a></li>
-    </ul>
-
-   	Firstname :
+      </ul>
     </div>
 
+    <div class="show_body">
+      
+      <div class="profile">
+        <ul class="menu ">
+        <li><img src="picture/man.svg" id="profile_picture" style="margin: 30px;"></li>
+        <li><label>ด.ช.ชยุตม์ อ้วนที่สุด</label>
+        <label>boos@gmail.com</label>
+        <label>สาขาเทคโน ภาคเทคโนโล คณะเทคโนโลยี</label>
+        </li>
+      </ul>
+      </div>
 
+      <center>
+      <h5 style="margin-top: 100px;">รายการที่อัพโหลด</h5>
+      <table style="width: 65%; margin-top: 180px;">
+          <thead>
+            <th style="width: 50%;"><center>ชื่อไฟล์</center></th>
+            <th style="width: 40%;"><center>วิชา</center></th>
+            <th> </th>
+            
+          </thead>
+              <tr>
+                <td>ชื่อหนังสือครับ</td>
+                <td><center>ตัวอ้วน</center></td>
+                <td><center><a href="del"><img class="del" src="picture/delete.svg"></a></center></td>
+              </tr>
+              <tr>
+                <td>ชื่อหนังสือครับ</td>
+                <td><center>ตัวอ้วน</center></td>
+                <td><center><a href="del"><img class="del" src="picture/delete.svg"></a></center></td>
+              </tr>
+              <tr>
+                <td>ชื่อหนังสือครับ</td>
+                <td><center>ตัวอ้วน</center></td>
+                <td><center><a href="del"><img class="del" src="picture/delete.svg"></a></center></td>
+              </tr>
+      </table>
+    </center>
+    </div>
 
-   
-
-</body>
+  </body>
 </html>
-
-
