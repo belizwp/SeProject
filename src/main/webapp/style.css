@@ -207,7 +207,7 @@ table tbody tr:nth-child(even) {
   background-image: url(picture/icon_search.svg);
 }
 .text_input{
-    border: 1px solid grey;
+    border: 1px solid #5353538f;
     border-radius: 18px;
     text-align: center;
     background-color: white;
@@ -227,10 +227,10 @@ table tbody tr:nth-child(even) {
     cursor: pointer;
 }
 .btn{
-    border: 1px solid #444343;
+    border: 1px solid #535353bd;
     border-radius: 18px;
     text-align: center;
-    background-color: #444343;
+    background-color: #ffffff00;
     color: grey;
     width: 100px;
     height: 40px;
@@ -274,7 +274,7 @@ table tbody tr:nth-child(even) {
   background-color: #ffffff;
   cursor: pointer;
 }
-h1,h2,h3,h4,h5,h6{
+h1,h2,h3,h4,h5,h6,label{
   font-family: 'Kanit', sans-serif;
   color: #535353;
   font-weight: 300;
@@ -414,7 +414,6 @@ h4{
   right: 40px;
   cursor: pointer;
 }
-}
 #profile_picture {
   width: 100px;
 
@@ -426,4 +425,24 @@ h4{
 
 .del{
   width: 20px;
+}
+.pro{
+  width: 40px;
+}
+.text_input{
+  background-color: #ffffff00;
+  font-family: 'Kanit', sans-serif;
+  color: #535353;
+  font-weight: 300;
+}
+.text_input:focus{
+  background-color: #ffffff00;
+}
+[type='text']:focus{
+  background-color: #ffffff00;
+  color: #535353;
+}
+
+input::placeholder {
+  color: #535353bd;
 }
