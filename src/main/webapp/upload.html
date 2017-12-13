@@ -8,14 +8,26 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <style type="text/css">
+    @media print, screen and (max-width: 1280px){
       body{
         display: flex;
         width: 100%;
         height: 100%;
-        background:url('picture/StockSnap_CLEN0FR4WM.jpg') 100% no-repeat;
+        background:url('picture/up.jpg') 100% no-repeat;
         background-size: cover;
         background-position: center top;
       }
+    }
+    @media print, screen and (min-width: 1280px){
+      body{
+        display: flex;
+        width: 100%;
+        height: 100%;
+        background:url('picture/up2.jpg') 100% no-repeat;
+        background-size: cover;
+        background-position: center top;
+      }
+    }
     </style>
   </head>
   <body>
@@ -31,12 +43,18 @@
 
     <form action="upload.php" method="POST">
     <div id="icon-upload">
-      <center style="width: 150px; margin-top: -40px; margin-left: -20px;">
-      <input type="file" multiple style="margin-left: -220px;">
-      <img src="picture/002-file-add-button-outline.svg" class="img_up" onclick="">
-      คลิกเพื่ออัพโหลดหรือลากไฟล์มาวาง
-      <img src="picture/interface.svg" id="btn_upload" class="img_up">
+      <input type="file" multiple style="margin-left: -100px;
+                                         width: 300px;position: relative;
+                                         padding: 0;
+                                         outline: none;
+                                         opacity: 0;
+                                         cursor: pointer;
+                                         height: 200px;" >
+      <center>
+        <input type="text" name="sheetname" class="text_input" placeholder="กรอกชื่อไฟล์">
+        <img src="picture/interface.svg" id="btn_upload" class="img_up">
       </center>
+
 	  </div>
     </form>
 
