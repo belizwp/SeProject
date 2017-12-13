@@ -1,13 +1,17 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-
-<jsp:include page="templates/header.jsp"/>
-
-
+<%@ page isELIgnored="false" %>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Login</title>
+</head>
+<body>
+    <jsp:include page="/templates/header.jsp"/>
     <c:set var="user" value="${sessionScope.user}"/>
     <c:choose>
         <c:when test="${user != null}">
-            you already logged in.
+            <div>    you already logged in.</div>
         </c:when>
         <c:otherwise>
             <form action="/login" method="post">
@@ -28,6 +32,5 @@
             </form>
         </c:otherwise>
     </c:choose>
-</div>
 </body>
 </html>

@@ -24,9 +24,9 @@
 <body>
     <div id="nav-bar">
         <ul class="menu medium-expanded nav">
-            <li><a href="/search.html">ค้นหา</a></li>
-            <li><a href="/search.html">เอกสารที่ถูกใจ</a></li>
+            <li><a href="/Search.jsp">Search</a></li>
+            <li><a href="/Profile.jsp">Profile</a></li>
             <li id="logo"><a href="/search.html">Sheet&Share </a></li>
-            <li><a href="/search.html">เอกสารที่แบ่งปัน</a></li>
-            <li><a href="/Login.jsp">โปรไฟล์</a></li>
+            <li><a href="/Login.jsp">Login</a></li>
+            <li><a href="/logout">Logout</a></li>
         </ul>

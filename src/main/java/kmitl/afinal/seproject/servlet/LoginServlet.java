@@ -35,6 +35,7 @@ public class LoginServlet extends HttpServlet {
             if (user != null) {
                 HttpSession session = request.getSession(true);
                 session.setAttribute("user", user);
+                response.sendRedirect("/Profile.jsp");
                 out.println("Login success! " + user.getUsername() + ", create on " + user.getCreateTime());
             } else {
                 out.println("Login failed!");
