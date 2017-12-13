@@ -65,6 +65,20 @@ public class SheetDao {
         return list.get(0);
     }
 
+    public List<Sheet> getSheetBySubjectId(int subjectId) throws SQLException {
+        String sql = "SELECT * FROM `sheet` WHERE subject_id = ? ORDER BY update_time DESC";
+
+        PreparedStatement stm = connection.prepareStatement(sql);
+        stm.setInt(1, subjectId);
+        ResultSet rs = stm.executeQuery();
+
+        List<Sheet> list = new ArrayList<Sheet>();
+
+        fillModel(rs, list);
+
+        return list;
+    }
+
     public int insert(Sheet sheet) throws SQLException {
         String sql = "INSERT INTO `sheet` (`type`, `title`, `term`, `subject_id`, `branch_id`, `department_id`, `faculty_id`, `create_by`) " +
                 "VALUES (?, ?, ?, ?, ?, ?, ?, ?)";

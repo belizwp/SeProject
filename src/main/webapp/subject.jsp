@@ -54,7 +54,9 @@
                             <c:when test="${requestScope.first.size() > 0}">
                                 <c:forEach var="subject" items="${requestScope.first}">
                                     <tr>
-                                        <td><a href="sheet.html">${subject.id} ${subject.name}</a></td>
+                                        <td>
+                                            <a href="/viewSheetAll?subject_id=${subject.id}">${subject.id} ${subject.name}</a>
+                                        </td>
                                     </tr>
                                 </c:forEach>
                             </c:when>

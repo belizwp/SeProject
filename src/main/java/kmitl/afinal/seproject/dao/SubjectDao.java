@@ -2,6 +2,7 @@ package kmitl.afinal.seproject.dao;
 
 import kmitl.afinal.seproject.model.BaseModel;
 import kmitl.afinal.seproject.model.Subject;
+import kmitl.afinal.seproject.model.SubjectView;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -53,6 +54,36 @@ public class SubjectDao {
         fillModel(rs, list);
 
         return list;
+    }
+
+    public SubjectView getSubjectView(int subjectId) throws SQLException {
+        String sql = "SELECT d1.id, d1.name, d1.year, d1.semester, d2.name as branch, d3.name as department, d4.name as faculty " +
+                "FROM sedb.subject AS d1 " +
+                "INNER JOIN sedb.branch AS d2 " +
+                "ON  (d1.branch_id = d2.id) " +
+                "INNER JOIN sedb.department AS d3 " +
+                "ON (d2.department_id = d3.id) " +
+                "INNER JOIN sedb.faculty AS d4 " +
+                "ON (d3.faculty_id = d4.id) " +
+                "WHERE d1.id = ?";
+
+        PreparedStatement stm = connection.prepareStatement(sql);
+        stm.setInt(1, subjectId);
+        ResultSet rs = stm.executeQuery();
+
+        SubjectView subjectView = new SubjectView();
+
+        if (rs.next()) {
+            subjectView.setId(rs.getString("id"));
+            subjectView.setName(rs.getString("name"));
+            subjectView.setYear(rs.getInt("year"));
+            subjectView.setSemester(rs.getInt("semester"));
+            subjectView.setFacultyName(rs.getString("faculty"));
+            subjectView.setDepartmentName(rs.getString("department"));
+            subjectView.setBranchName(rs.getString("branch"));
+        }
+
+        return subjectView;
     }
 
     public List<Subject> search(int branchId, int year, int semester) throws SQLException {
