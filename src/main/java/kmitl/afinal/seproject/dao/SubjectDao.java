@@ -57,7 +57,8 @@ public class SubjectDao {
     }
 
     public SubjectView getSubjectView(int subjectId) throws SQLException {
-        String sql = "SELECT d1.id, d1.name, d1.year, d1.semester, d2.name as branch, d3.name as department, d4.name as faculty " +
+        String sql = "SELECT d1.id, d1.name, d1.year, d1.semester, d2.name as branch, d3.name as department, d4.name as faculty, " +
+                "d2.id AS branchid, d3.id AS departmentid, d4.id as facultyid " +
                 "FROM sedb.subject AS d1 " +
                 "INNER JOIN sedb.branch AS d2 " +
                 "ON  (d1.branch_id = d2.id) " +
@@ -81,6 +82,9 @@ public class SubjectDao {
             subjectView.setFacultyName(rs.getString("faculty"));
             subjectView.setDepartmentName(rs.getString("department"));
             subjectView.setBranchName(rs.getString("branch"));
+            subjectView.setFacultyId(rs.getInt("facultyid"));
+            subjectView.setDepartmentId(rs.getInt("departmentid"));
+            subjectView.setBranchId(rs.getInt("branchid"));
         }
 
         return subjectView;
