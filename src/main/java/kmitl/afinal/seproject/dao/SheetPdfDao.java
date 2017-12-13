@@ -37,7 +37,7 @@ public class SheetPdfDao {
         return list;
     }
 
-    public List<SheetPdf> getWithSheetId(int id) throws SQLException {
+    public SheetPdf getWithSheetId(int id) throws SQLException {
         String sql = "SELECT * FROM `sheet_pdf` WHERE sheet_id = ?";
 
         PreparedStatement stm = connection.prepareStatement(sql);
@@ -48,7 +48,7 @@ public class SheetPdfDao {
 
         fillModel(rs, list);
 
-        return list;
+        return list.get(0);
     }
 
     public int insert(SheetPdf sheetPdf) throws SQLException {

@@ -51,6 +51,20 @@ public class SheetDao {
         return list;
     }
 
+    public Sheet getSheet(int id) throws SQLException {
+        String sql = "SELECT * FROM `sheet` WHERE id = ?";
+
+        PreparedStatement stm = connection.prepareStatement(sql);
+        stm.setInt(1, id);
+        ResultSet rs = stm.executeQuery();
+
+        List<Sheet> list = new ArrayList<Sheet>();
+
+        fillModel(rs, list);
+
+        return list.get(0);
+    }
+
     public int insert(Sheet sheet) throws SQLException {
         String sql = "INSERT INTO `sheet` (`type`, `title`, `term`, `subject_id`, `branch_id`, `department_id`, `faculty_id`, `create_by`) " +
                 "VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
