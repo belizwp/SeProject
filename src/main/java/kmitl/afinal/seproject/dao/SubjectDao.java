@@ -55,6 +55,22 @@ public class SubjectDao {
         return list;
     }
 
+    public List<Subject> search(int branchId, int year, int semester) throws SQLException {
+        String sql = "SELECT * FROM `subject` WHERE branch_id = ? AND `year` = ? AND semester = ?";
+
+        PreparedStatement stm = connection.prepareStatement(sql);
+        stm.setInt(1, branchId);
+        stm.setInt(2, year);
+        stm.setInt(3, semester);
+        ResultSet rs = stm.executeQuery();
+
+        List<Subject> list = new ArrayList<Subject>();
+
+        fillSubject(rs, list);
+
+        return list;
+    }
+
     public List<BaseModel> getWithBranchIdAndYear(int id, int year) throws SQLException {
         if (year == 0) {
             return getWithBranchId(id);
@@ -75,6 +91,20 @@ public class SubjectDao {
     }
 
     private void fillModel(ResultSet rs, List<BaseModel> out) throws SQLException {
+        while (rs.next()) {
+            Subject subject = new Subject();
+
+            subject.setId(rs.getString("id"));
+            subject.setName(rs.getString("name"));
+            subject.setYear(rs.getInt("year"));
+            subject.setSemester(rs.getInt("semester"));
+            subject.setBranchId(rs.getInt("branch_id"));
+
+            out.add(subject);
+        }
+    }
+
+    private void fillSubject(ResultSet rs, List<Subject> out) throws SQLException {
         while (rs.next()) {
             Subject subject = new Subject();
 
