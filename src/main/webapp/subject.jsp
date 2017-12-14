@@ -76,10 +76,12 @@
                 <li>
                     <table class="sub">
                         <c:choose>
-                            <c:when test="${requestScope.first.size() > 0}">
+                            <c:when test="${requestScope.second.size() > 0}">
                                 <c:forEach var="subject" items="${requestScope.second}">
                                     <tr>
-                                        <td><a href="sheet.html">${subject.id} ${subject.name}</a></td>
+                                        <td>
+                                            <a href="/viewSheetAll?subject_id=${subject.id}">${subject.id} ${subject.name}</a>
+                                        </td>
                                     </tr>
                                 </c:forEach>
                             </c:when>
