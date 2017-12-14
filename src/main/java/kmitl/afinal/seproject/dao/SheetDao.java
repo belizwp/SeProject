@@ -168,6 +168,15 @@ public class SheetDao {
         }
     }
 
+    public void delete(int sheetId) throws SQLException {
+        String sql = "DELETE FROM `sheet` WHERE id = ?";
+
+        PreparedStatement stm = connection.prepareStatement(sql);
+        stm.setInt(1, sheetId);
+
+        stm.execute();
+    }
+
     public List<Sheet> search(Sheet info) throws SQLException {
         String sql = "SELECT * FROM `sheet` WHERE 1=1 ";
 

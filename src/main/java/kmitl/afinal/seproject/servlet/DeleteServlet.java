@@ -1,8 +1,6 @@
 package kmitl.afinal.seproject.servlet;
 
 import kmitl.afinal.seproject.dao.SheetDao;
-import kmitl.afinal.seproject.model.Sheet;
-import kmitl.afinal.seproject.model.User;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -12,11 +10,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.Connection;
-import java.sql.PreparedStatement;
 import java.sql.SQLException;
-import java.util.List;
-
-import static java.lang.Integer.parseInt;
 
 @WebServlet(name = "DeleteServlet", urlPatterns = "/delete")
 public class DeleteServlet extends HttpServlet {
@@ -25,16 +19,10 @@ public class DeleteServlet extends HttpServlet {
         response.setContentType("text/html");
         PrintWriter out = response.getWriter();
 
+        int sheetId = Integer.valueOf(request.getParameter("id"));
+
         Connection connection = (Connection) getServletContext().getAttribute("connection");
-
-        int id;
-        id = parseInt(request.getParameter("id"));
-
-        String sql = "DELETE FROM `sheet` WHERE id = ?";
-
-        PreparedStatement stm = connection.prepareStatement(sql);
-        stm.setInt(1, id);
-
+        SheetDao.with(connection).delete(sheetId);
         response.sendRedirect("Profile.jsp");
     }
 
