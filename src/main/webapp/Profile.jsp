@@ -1,5 +1,6 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib prefix="sql" uri="http://java.sun.com/jsp/jstl/sql" %>
 <%@ page isELIgnored="false" %>
 
 <html lang="en">
@@ -16,7 +17,7 @@
             display: flex;
             width: 100%;
             height: 100%;
-            background:url('picture/profile.jpg') 100% no-repeat;
+            background:url('picture/cac2.jpg') 100% no-repeat;
             background-size: cover;
             background-position: center top;
             font-family: 'Kanit', sans-serif;
@@ -42,8 +43,8 @@
             </div>
 
             <center>
-                <h5 style="margin-top: 100px;">รายการที่อัพโหลด</h5>
-                <table style="width: 65%; margin-top: 180px;">
+                <h5 style="margin-top: 35px;">รายการที่อัพโหลด</h5>
+                <table style="width: 65%; margin-top: 20px;">
                     <thead>
                     <th style="width: 50%;"><center>ชื่อไฟล์</center></th>
                     <th style="width: 40%;"><center>วิชา</center></th>
@@ -51,18 +52,17 @@
 
                     </thead>
 
-                    <c:forEach var="sheet" items="${requestScope.sheetList}">
+                    <sql:query dataSource="${dataSource}" var="sheetMe_rows">
+                        SELECT * FROM `sheet` WHERE create_by = '${user.username}';
+                    </sql:query>
+
+                    <c:forEach var="sheet" items="${sheetMe_rows.rows}">
                     <tr>
-                        <td>${sheet.title}</td>
+                        <td><center>${sheet.title}</center></td>
                         <td>
                             <center>${sheet.create_by}</center>
                         </td>
-                        <td class="view">
-                            <center><a href="/viewSheetMe?id=${sheet.id}">VIEW</a></center>
-                        </td>
-                        <td class="download">
-                            <center><a href="${sheet.pdfPath}">DOWNLOAD</a></center>
-                        </td>
+                        <td><center><a href="/delete?id=${sheet.id}">${sheet.id}<img class="del" src="picture/delete.svg"></a></center></td>
                     </tr>
                     </c:forEach>
                 </table>
