@@ -62,7 +62,7 @@
                         <td>
                             <center>${sheet.create_by}</center>
                         </td>
-                        <td><center><a href="/delete?id=${sheet.id}">${sheet.id}<img class="del" src="picture/delete.svg"></a></center></td>
+                        <td><center><a href="/delete?id=${sheet.id}"><img class="del" src="picture/delete.svg"></a></center></td>
                     </tr>
                     </c:forEach>
                 </table>
