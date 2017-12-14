@@ -16,7 +16,7 @@
     <title>${sheet.title}</title>
 </head>
 <body>
-<object data="${pdf.path}" type="application/pdf" width="50%" height="50%">
+<object data="${pdf.path}" type="application/pdf" width="100%" height="100%">
     <p><b>Example fallback content</b>: This browser does not support PDFs. Please download the PDF to view it: <a href="${pdf.path}">Download PDF</a>.</p>
 </object>
 </body>

@@ -64,7 +64,7 @@
                         <center>${sheet.updateTime}</center>
                     </td>
                     <td class="view">
-                        <center><a href="/viewSheet?id=${sheet.id}">VIEW</a></center>
+                        <center><a target="_blank" href="/viewSheet?id=${sheet.id}">VIEW</a></center>
                     </td>
                     <td class="download">
                         <center><a href="${sheet.pdfPath}" download>DOWNLOAD</a></center>
