@@ -13,11 +13,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <style type="text/css">
-        body{
+        body {
             display: flex;
             width: 100%;
             height: 100%;
-            background:url('picture/cac2.jpg') 100% no-repeat;
+            background: url('picture/cac2.jpg') 100% no-repeat;
             background-size: cover;
             background-position: center top;
             font-family: 'Kanit', sans-serif;
@@ -46,24 +46,39 @@
                 <h5 style="margin-top: 35px;">รายการที่อัพโหลด</h5>
                 <table style="width: 65%; margin-top: 20px;">
                     <thead>
-                    <th style="width: 50%;"><center>ชื่อไฟล์</center></th>
-                    <th style="width: 40%;"><center>วิชา</center></th>
-                    <th> </th>
+                    <th style="width: 50%;">
+                        <center>ชื่อไฟล์</center>
+                    </th>
+                    <th style="width: 40%;">
+                        <center>วิชา</center>
+                    </th>
+                    <th></th>
 
                     </thead>
 
                     <sql:query dataSource="${dataSource}" var="sheetMe_rows">
-                        SELECT * FROM `sheet` WHERE create_by = '${user.username}';
+                        SELECT d1.id, d1.title, d1.subject_id, d2.name
+                        FROM sedb.sheet as d1
+                        INNER JOIN sedb.subject as d2
+                        ON (d1.subject_id = d2.id)
+                        WHERE create_by = '${user.username}';
                     </sql:query>
 
                     <c:forEach var="sheet" items="${sheetMe_rows.rows}">
-                    <tr>
-                        <td><center>${sheet.title}</center></td>
-                        <td>
-                            <center>${sheet.create_by}</center>
-                        </td>
-                        <td><center><a href="/delete?id=${sheet.id}"><img class="del" src="picture/delete.svg"></a></center></td>
-                    </tr>
+                        <tr>
+                            <td>
+                                <center>${sheet.title}</center>
+                            </td>
+                            <td>
+                                <center>
+                                    <a href="/viewSheetAll?subject_id=${sheet.subject_id}">${sheet.subject_id} ${sheet.name}</a>
+                                </center>
+                            </td>
+                            <td>
+                                <center><a href="/delete?id=${sheet.id}"><img class="del" src="picture/delete.svg"></a>
+                                </center>
+                            </td>
+                        </tr>
                     </c:forEach>
                 </table>
                 <input type="button" class="btn" value="Logout" onclick="location.href='/logout'">
